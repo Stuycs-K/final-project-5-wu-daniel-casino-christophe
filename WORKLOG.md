@@ -6,6 +6,7 @@
 
 - Started making the classes and instance variables
 - Note that UML drawing needs to be transferred from smartDraw to draw.io
+- Background will be set as the canonical Pac-Man map
 
 ### date y
 
