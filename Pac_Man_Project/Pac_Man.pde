@@ -27,6 +27,10 @@ public class PacMan{
     return location;
   }
   
+  public void subtractLife(){
+    
+  }
+  
   public int getConsumedGhosts(){
     return ghostsConsumed;
   }
