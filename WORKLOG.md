@@ -29,9 +29,12 @@ info
 info
 
 
-## GROUP MEMBER 2
+## Christophe Casino
 
-### date x
+### 5/24/24
+
+- Created Pac-Man class with instant variables, constructor, and basic methods
+- Started to update UML but can't fully finish it as the Pac-Man class needed to be chaned along the way
 
 info
 
