@@ -8,6 +8,7 @@ void setup(){
 }
 
 void draw(){
-
+  Ghost Blinky = new Ghost("Blinky.jpg");
+  Blinky.showGhost(0, 0);
 
 }
