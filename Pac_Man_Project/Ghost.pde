@@ -1,13 +1,13 @@
 public class Ghost{
-  int movementSpeed;
-  int xCenter;
-  int yCenter;
-  int size;
-  boolean scaredState;
-  boolean scatteredState;
-  boolean chaseState;
-  boolean eatenState;
-  PImage ghost;
+  private int movementSpeed;
+  private int xCenter;
+  private int yCenter;
+  private int size;
+  private boolean scaredState;
+  private boolean scatteredState;
+  private boolean chaseState;
+  private boolean eatenState;
+  private PImage ghost;
   
   public Ghost(String ghostType){
     ghost = loadImage(ghostType);
@@ -17,6 +17,8 @@ public class Ghost{
     scaredState=false;
     eatenState=false;
     scatteredState=false;
+    xCenter=0;
+    yCenter=0;
   }
   
   public void showGhost(int xCoord, int yCoord){
@@ -69,6 +71,18 @@ public class Ghost{
       yCenter-=movementSpeed;
     }
     
-    image(ghost, xCenter, yCenter, size, size);
+    showGhost(xCenter, yCenter);
+  }
+  
+  public int getX(){
+    return xCenter;
+  }
+  
+  public int getY(){
+    return yCenter;
+  }
+  
+  public PImage getGhost(){
+    return ghost;
   }
 }
