@@ -14,10 +14,10 @@ public class PacMan{
     movementSpeed = 8;
     lifeCount = 3;
     score = 0;
-    size = 35;
+    size = 29;
     addedLife = false;
-    x = 490;
-    y = 1260 - 367;
+    x = 406;
+    y = 725;
   }
   
   public int getLives(){
