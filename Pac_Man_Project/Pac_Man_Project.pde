@@ -2,7 +2,7 @@ int rowTiles;
 int columnTiles;
 
 void setup(){
-  size(252, 324);
+  size(980, 1260);
   rowTiles=28;
   columnTiles=36;
 }

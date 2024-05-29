@@ -8,9 +8,12 @@
 - Note that UML drawing needs to be transferred from smartDraw to draw.io
 - Background will be set as the canonical Pac-Man map
 
-### date y
+### 5/28/24
 
-info
+- Started working on getting ghosts to appear on screen
+- Setting instance variables for movement states
+- Making methods to apply movement
+- Finalized Ghost Constructor
 
 ### date x
 
