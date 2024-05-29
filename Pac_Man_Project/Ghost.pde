@@ -69,6 +69,6 @@ public class Ghost{
       yCenter-=movementSpeed;
     }
     
-    
+    image(ghost, xCenter, yCenter, size, size);
   }
 }
