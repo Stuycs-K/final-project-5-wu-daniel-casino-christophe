@@ -1,13 +1,14 @@
 public class Ghost{
-  int movementSpeed;
-  int xCenter;
-  int yCenter;
-  int size;
-  boolean scaredState;
-  boolean scatteredState;
-  boolean chaseState;
-  boolean eatenState;
-  PImage ghost;
+  private int movementSpeed;
+  PVector location;
+  PVector xvelocity;
+  PVector yvelocity;
+  private int size;
+  private boolean scaredState;
+  private boolean scatteredState;
+  private boolean chaseState;
+  private boolean eatenState;
+  private PImage ghost;
   
   public Ghost(String ghostType){
     ghost = loadImage(ghostType);
@@ -17,10 +18,13 @@ public class Ghost{
     scaredState=false;
     eatenState=false;
     scatteredState=false;
+    location = new PVector(0,0);
+    xvelocity = new PVector(movementSpeed,0);
+    yvelocity = new PVector(0,movementSpeed);
   }
   
   public void showGhost(int xCoord, int yCoord){
-    image(ghost, xCoord, yCoord, size, size);
+    image(ghost, location.x, location.y, size, size);
   }
   
   
@@ -54,21 +58,23 @@ public class Ghost{
   
   public void applyDirection(String direction){
     if (direction.equals("left")){
-      xCenter-=movementSpeed;
+      location.sub(xvelocity);
     }
     
     if (direction.equals("right")){
-      xCenter+=movementSpeed;
+      location.add(xvelocity);
     }
     
     if (direction.equals("up")){
-      yCenter+=movementSpeed;
+      location.add(yvelocity);
     }
     
     if (direction.equals("down")){
-      yCenter-=movementSpeed;
+      location.sub(yvelocity);
     }
     
-    image(ghost, xCenter, yCenter, size, size);
+    showGhost((int)location.x,(int) location.y);
   }
+  
+
 }
