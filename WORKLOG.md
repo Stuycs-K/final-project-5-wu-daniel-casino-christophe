@@ -15,7 +15,9 @@
 - Making methods to apply movement
 - Finalized Ghost Constructor
 
-### date x
+### 5/29/24
+- Did the basis of Ghost movement, can now move within the screen
+- Beginning to incorporate the other ghosts into the map, will code movement soon
 
 info
 
