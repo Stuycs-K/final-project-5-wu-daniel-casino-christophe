@@ -2,6 +2,7 @@ int rowTiles;
 int columnTiles;
 KeyboardBuffer keyboardInput;
 PacMan pacMan;
+Ghost Blinky;
 
 void setup(){
   size(980, 1260);
@@ -9,14 +10,11 @@ void setup(){
   columnTiles=36;
   keyboardInput = new KeyboardBuffer();
   pacMan = new PacMan();
-  Ghost Blinky = new Ghost("Blinky.jpg");
+   Blinky= new Ghost("Blinky.jpg");
 }
 
 void draw(){
-  
-
   background(255);
-  
   Blinky.applyDirection("right");
   circle(pacMan.x, pacMan.y, pacMan.size);
   //check if the button P1_LEFT is being pressed:
