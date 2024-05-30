@@ -1,15 +1,21 @@
 public class Ghost{
-  private int movementSpeed;
+  // PVectors dictate the movement and the direction of ghosts
   private PVector location;
   private PVector xvelocity;
   private PVector yvelocity;
   private PVector ghostDirection;
+  
+  //Physical Properties of the Ghosts
+  private int movementSpeed;
   private int size;
+  private PImage ghost;
+  
+  //States of Ghosts
   private boolean scaredState;
   private boolean scatteredState;
   private boolean chaseState;
   private boolean eatenState;
-  private PImage ghost;
+  
 
   // change the map parameter to GridSpace  
   public Ghost(String ghostType, int[][] map){
