@@ -1,16 +1,18 @@
 public class Ghost{
   private int movementSpeed;
-  PVector location;
-  PVector xvelocity;
-  PVector yvelocity;
+  private PVector location;
+  private PVector xvelocity;
+  private PVector yvelocity;
+  private PVector ghostDirection;
   private int size;
   private boolean scaredState;
   private boolean scatteredState;
   private boolean chaseState;
   private boolean eatenState;
   private PImage ghost;
-  
-  public Ghost(String ghostType){
+
+  // change the map parameter to GridSpace  
+  public Ghost(String ghostType, int[][] map){
     ghost = loadImage(ghostType);
     movementSpeed = 8;
     size = 9;
@@ -59,18 +61,22 @@ public class Ghost{
   public void applyDirection(String direction){
     if (direction.equals("left")){
       location.sub(xvelocity);
+      ghostDirection = new PVector(-1,0);
     }
     
     if (direction.equals("right")){
       location.add(xvelocity);
+      ghostDirection = new PVector(1,0);
     }
     
     if (direction.equals("up")){
       location.add(yvelocity);
+      ghostDirection = new PVector(0,1);
     }
     
     if (direction.equals("down")){
       location.sub(yvelocity);
+      ghostDirection = new PVector(0,-1);
     }
     
     showGhost((int)location.x,(int) location.y);

@@ -10,7 +10,7 @@ void setup(){
   columnTiles=36;
   keyboardInput = new KeyboardBuffer();
   pacMan = new PacMan();
-   Blinky= new Ghost("Blinky.jpg");
+  Blinky= new Ghost("Blinky.jpg");
 }
 
 void draw(){
