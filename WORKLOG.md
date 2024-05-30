@@ -50,3 +50,9 @@ info
 ### 5/29/24
 
 - Pulled other branches and merged the branch because it had working functions that needed to be in main
+- Now changing movement to PVectors
+
+### 5/30/24
+
+- Added Pac-Man images to repository
+- Started translating Pac-Man movement to PVectors
