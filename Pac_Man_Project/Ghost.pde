@@ -108,7 +108,7 @@ public class Ghost{
   public void applyScatter(){}
   
   public void scatterTarget(){
-  
+    if (ghostName.equals("Pinky")){}
   }
   public void applyChase(){}
   
