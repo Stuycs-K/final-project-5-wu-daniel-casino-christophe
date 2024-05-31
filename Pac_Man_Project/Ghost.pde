@@ -8,6 +8,7 @@ public class Ghost{
   //Physical Properties of the Ghosts
   private int movementSpeed;
   private int size;
+  private String ghostName;
   private PImage ghost;
   
   //States of Ghosts
@@ -19,19 +20,25 @@ public class Ghost{
   //map for ghosts
   private int[][] ghostMap;
   
+  //targeting system for ghost
+  private int[] currentTarget;
 
   // change the map parameter to GridSpace  
   public Ghost(String ghostType, int[][] map){
     ghost = loadImage(ghostType);
     movementSpeed = 8;
     size = 9;
+    ghostName = ghostType.substring(0, ghostType.length()-4);
+    
     chaseState=false;
     scaredState=false;
     eatenState=false;
     scatteredState=true;
+    
     location = new PVector(0,0);
     xvelocity = new PVector(movementSpeed,0);
     yvelocity = new PVector(0,movementSpeed);
+    
     ghostMap=map;
   }
   
@@ -92,9 +99,17 @@ public class Ghost{
     showGhost((int)location.x,(int) location.y);
   }
   
+  //get methods
+  public String getName(){
+    return ghostName;
+  }
+
+  //states of movement
   public void applyScatter(){}
   
-  public void find
+  public void scatterTarget(){
+  
+  }
   public void applyChase(){}
   
   public void applyEaten(){}
