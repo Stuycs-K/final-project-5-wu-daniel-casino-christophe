@@ -3,10 +3,10 @@ PacMan currentPacMan;
 Map currentMap;
 
 void setup(){
-  size(812, 1015);
   keyboardInput = new KeyboardBuffer();
   currentPacMan = new PacMan();
   currentMap = new Map();
+  size(currentMap.getRP(), currentMap.getCP());
 }
 
 void draw(){
