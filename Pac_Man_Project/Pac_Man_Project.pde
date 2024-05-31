@@ -1,12 +1,8 @@
-int rowTiles;
-int columnTiles;
 KeyboardBuffer keyboardInput;
 PacMan pacMan;
 
 void setup(){
   size(812, 1015);
-  rowTiles=28;
-  columnTiles=36;
   keyboardInput = new KeyboardBuffer();
   pacMan = new PacMan();
 }
