@@ -56,3 +56,8 @@ info
 
 - Added Pac-Man images to repository
 - Started translating Pac-Man movement to PVectors
+
+### 5/31/24
+- Added Map image
+- Moved a lot of the map properties from the main class to the map class
+- Reimplemented the map properties into the main class by adding an instance of the map into the main class
