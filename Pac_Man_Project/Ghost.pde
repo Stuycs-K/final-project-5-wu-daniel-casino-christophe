@@ -16,6 +16,9 @@ public class Ghost{
   private boolean chaseState;
   private boolean eatenState;
   
+  //map for ghosts
+  private int[][] ghostMap;
+  
 
   // change the map parameter to GridSpace  
   public Ghost(String ghostType, int[][] map){
@@ -29,6 +32,7 @@ public class Ghost{
     location = new PVector(0,0);
     xvelocity = new PVector(movementSpeed,0);
     yvelocity = new PVector(0,movementSpeed);
+    ghostMap=map;
   }
   
   public void showGhost(int xCoord, int yCoord){
@@ -90,6 +94,7 @@ public class Ghost{
   
   public void applyScatter(){}
   
+  public void find
   public void applyChase(){}
   
   public void applyEaten(){}
