@@ -22,10 +22,10 @@ public class Ghost{
     ghost = loadImage(ghostType);
     movementSpeed = 8;
     size = 9;
-    chaseState=true;
+    chaseState=false;
     scaredState=false;
     eatenState=false;
-    scatteredState=false;
+    scatteredState=true;
     location = new PVector(0,0);
     xvelocity = new PVector(movementSpeed,0);
     yvelocity = new PVector(0,movementSpeed);
@@ -87,6 +87,14 @@ public class Ghost{
     
     showGhost((int)location.x,(int) location.y);
   }
+  
+  public void applyScatter(){}
+  
+  public void applyChase(){}
+  
+  public void applyEaten(){}
+  
+  public void applyScared(){}
   
 
 }
