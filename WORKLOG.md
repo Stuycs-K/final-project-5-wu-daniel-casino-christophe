@@ -19,10 +19,10 @@
 - Did the basis of Ghost movement, can now move within the screen
 - Beginning to incorporate the other ghosts into the map, will code movement soon
 
-info
 
-### date y
-
+### 5/30/24
+- Watched a video on the states of the Ghosts
+-Starting to incorporate scatterState
 info
 
 ### date x
