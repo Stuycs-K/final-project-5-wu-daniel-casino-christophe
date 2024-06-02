@@ -94,7 +94,6 @@ public class Ghost{
   
   public void applyScatter(){}
   
-  public void find
   public void applyChase(){}
   
   public void applyEaten(){}

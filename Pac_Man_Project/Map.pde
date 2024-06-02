@@ -1,8 +1,8 @@
 public class Map extends Game{
-  int rowPixels;
-  int columnPixels;
-  int rowTiles;
-  int columnTiles;
+  private int rowPixels;
+  private int columnPixels;
+  private int rowTiles;
+  private int columnTiles;
   
   public Map(){
     rowPixels = 812;

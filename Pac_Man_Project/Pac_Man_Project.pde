@@ -4,18 +4,16 @@ PacMan currentPacMan;
 Map currentMap;
 
 void setup(){
+  size(812, 1015);
   keyboardInput = new KeyboardBuffer();
-
   currentPacMan = new PacMan();
   currentMap = new Map();
-  size(currentMap.getRP(), currentMap.getCP());
-
+  PImage PacManMapImage = loadImage("PacManMapFinal.jpg");
+  image(PacManMapImage,0,0);
 }
 
 void draw(){
-  background(255);
-  Blinky.applyDirection("right");
-  circle(pacMan.x, pacMan.y, pacMan.size);
+  circle(currentPacMan.x, currentPacMan.y, currentPacMan.size);
   //check if the button P1_LEFT is being pressed:
   if (keyboardInput.P1_UP) {
     rect(10, 10, 10, 10);
