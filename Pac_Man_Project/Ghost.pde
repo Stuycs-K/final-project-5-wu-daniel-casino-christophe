@@ -133,7 +133,6 @@ public class Ghost{
     }
     
     
-    
   }
   public void applyChase(){}
   
