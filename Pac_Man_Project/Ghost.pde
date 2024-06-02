@@ -105,10 +105,28 @@ public class Ghost{
   }
 
   //states of movement
-  public void applyScatter(){
+  public void applyState(String state){
     removeCurrentState();
-    scatteredState=true;
-    currentTarget=scatterTarget();
+    if (state.equals("Scatter")){
+      scatteredState=true;
+      currentTarget=scatterTarget();
+    }
+    
+    if (state.equals("Scared")){
+      scaredState=true;
+      currentTarget=scatterTarget();
+    }
+    
+    if (state.equals("Chase")){
+      chaseState=true;
+      currentTarget=scatterTarget();
+    }
+    
+    if (state.equals("Eaten")){
+      eatenState=true;
+      currentTarget=scatterTarget();
+    }
+    
   }
   
   public int[] scatterTarget(){
@@ -123,22 +141,18 @@ public class Ghost{
     }
     
     if (ghostName.equals("Inky")){
-      int[] target = new int[]{36, 28};
+      int[] target = new int[]{31, 28};
       return target;
     }
     
     else{
-      int[] target = new int[]{36,0};
+      int[] target = new int[]{31,0};
       return target;
     }
     
     
   }
-  public void applyChase(){}
-  
-  public void applyEaten(){}
-  
-  public void applyScared(){}
+ 
   
 
 }
