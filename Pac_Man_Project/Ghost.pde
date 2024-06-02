@@ -21,7 +21,7 @@ public class Ghost{
   private int[][] ghostMap;
   
   //targeting system for ghost
-  private int[][] currentTarget;
+  private int[] currentTarget;
 
   // change the map parameter to GridSpace  
   public Ghost(String ghostType, int[][] map){
@@ -107,7 +107,8 @@ public class Ghost{
   //states of movement
   public void applyScatter(){
     removeCurrentState();
-    
+    scatteredState=true;
+    currentTarget=scatterTarget();
   }
   
   public int[] scatterTarget(){
