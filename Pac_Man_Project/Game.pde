@@ -5,7 +5,7 @@ public class Game{
   private int levelDifficulty;
   private String[] ghostStates;
   private Map grid;
-  private PacMan player = new PacMan(grid.getTileMap());
+  private PacMan player;
   private Ghost Blinky;
   private Ghost Pinky;
   private Ghost Inky;
@@ -15,6 +15,7 @@ public class Game{
   public Game(){
     highScore = 0;
     grid = new Map();
+    player = new PacMan(grid.getTileMap());
     ghostStates = new String[]{"scatter", "chase"};
     currentState=0;
     Blinky = new Ghost("Blinky.jpg", grid.getTileMap(), player, 377,348);
