@@ -11,7 +11,7 @@ void setup(){
   currentPacMan = new PacMan(currentMap.getTileMap());
   PImage PacManMapImage = loadImage("PacManMapVeryFinal.jpg");
   image(PacManMapImage,0,0);
-  startup = new Game();
+  startup = new Game(currentMap.getTileMap());
   timer = 0;
 }
 

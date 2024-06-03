@@ -48,7 +48,7 @@ public class Ghost{
     currentUser=player;
   }
   
-  public void showGhost(int xCoord, int yCoord){
+  public void showGhost(){
     image(ghost, location.x, location.y, size, size);
   }
   
@@ -115,7 +115,7 @@ public class Ghost{
       ghostDirection = new PVector(0,-1);
     }
     
-    showGhost((int)location.x,(int) location.y);
+    showGhost();
   }
   
    public String chooseDirection(){
@@ -146,30 +146,31 @@ public class Ghost{
       if (possibleDirections.get(i).equals("left")){
         if (gridLocation[0]==0||ghostMap[gridLocation[1]][gridLocation[0]-1]==0){
           possibleDirections.remove(i);
-          i--;
+          
         }
       }
       
       if (possibleDirections.get(i).equals("right")){
         if (gridLocation[0]+1>27||ghostMap[gridLocation[1]][gridLocation[0]+1]==0){
           possibleDirections.remove(i);
-          i--;
+          
         }
       }
       
       if (possibleDirections.get(i).equals("up")){
         if (gridLocation[1]==0||ghostMap[gridLocation[1]-1][gridLocation[0]]==0){
           possibleDirections.remove(i);
-          i--;
+          
         }
       }
       
       if (possibleDirections.get(i).equals("down")){
         if (gridLocation[1]+1>27||ghostMap[gridLocation[1]+1][gridLocation[0]]==0){
           possibleDirections.remove(i);
-          i--;
+          
         }
       }
+      i--;
     }
      int lowestDistance = findDistanceFromTarget(possibleDirections.get(0),gridLocation);
      String chosen = possibleDirections.get(0);

@@ -4,7 +4,6 @@ public class Game{
   private int levelWin;
   private int levelDifficulty;
   private String[] ghostStates;
-  private Map grid;
   private PacMan player;
   private Ghost Blinky;
   private Ghost Pinky;
@@ -12,16 +11,19 @@ public class Game{
   private Ghost Clyde;
   private int currentState;
   
-  public Game(){
+  public Game(int[][] map){
     highScore = 0;
-    grid = new Map();
-    player = new PacMan(grid.getTileMap());
+    player = new PacMan(map);
     ghostStates = new String[]{"scatter", "chase"};
     currentState=0;
-    Blinky = new Ghost("Blinky.jpg", grid.getTileMap(), player, 377,348);
-    Pinky = new Ghost("Pinky.jpg",grid.getTileMap(), player, 377,435);
-    Inky = new Ghost("Inky.jpg",grid.getTileMap(), player, 348,435);
-    Clyde = new Ghost("Clyde.jpg",grid.getTileMap(), player, 406,435);
+    Blinky = new Ghost("Blinky.jpg", map, player, 377,348);
+    Pinky = new Ghost("Pinky.jpg",map, player, 377,435);
+    Inky = new Ghost("Inky.jpg",map, player, 348,435);
+    Clyde = new Ghost("Clyde.jpg",map,player, 406,435);
+    Blinky.showGhost();
+      Pinky.showGhost();
+      Inky.showGhost();
+      Clyde.showGhost();
     
   }
   
@@ -31,6 +33,7 @@ public class Game{
       Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
       Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
       Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
+      
     }
     
     if (ghostStates[currentState].equals("chase")){
@@ -45,6 +48,10 @@ public class Game{
     Pinky.applyDirection(Blinky.chooseDirection());
     Inky.applyDirection(Blinky.chooseDirection());
     Clyde.applyDirection(Blinky.chooseDirection());
+    Blinky.showGhost();
+      Pinky.showGhost();
+      Inky.showGhost();
+      Clyde.showGhost();
   }
   
   public void switchStates(){

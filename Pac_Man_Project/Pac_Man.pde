@@ -71,7 +71,7 @@ public class PacMan{
     return PacManLocation;
   }
   
-  public void showPacMan(int xCoord, int yCoord){
+  public void showPacMan(){
     image(PacManImage, location.x, location.y, size, size);
   }
   
@@ -96,6 +96,6 @@ public class PacMan{
       PacManDirection = new PVector(0,-1);
     }
     
-    showPacMan((int)location.x,(int) location.y);
+    showPacMan();
   }
 }
