@@ -23,9 +23,19 @@
 ### 5/30/24
 - Watched a video on the states of the Ghosts
 -Starting to incorporate scatterState
+
+
+### date 6/2/24
+- Finished chase and scatter states for ghosts
+- Updated many instance variables in ghost class
+- Added decision-making process for the ghosts
+- Worked on Game class to run the game
+
+### date y
+
 info
 
-### date x
+### date y
 
 info
 
