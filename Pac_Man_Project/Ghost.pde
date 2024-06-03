@@ -23,11 +23,14 @@ public class Ghost{
   //targeting system for ghost
   private int[] currentTarget;
 
+  //Pacman for reference;
+  PacMan currentUser;
+  
   // change the map parameter to GridSpace  
-  public Ghost(String ghostType, int[][] map){
+  public Ghost(String ghostType, int[][] map, PacMan player){
     ghost = loadImage(ghostType);
     movementSpeed = 8;
-    size = 9;
+    size = 29;
     ghostName = ghostType.substring(0, ghostType.length()-4);
     ghostDirection = new PVector(0,1);
     
@@ -41,6 +44,8 @@ public class Ghost{
     yvelocity = new PVector(0,movementSpeed);
     
     ghostMap=map;
+    
+    currentUser=player;
   }
   
   public void showGhost(int xCoord, int yCoord){
@@ -54,24 +59,27 @@ public class Ghost{
 
   
   public int[] getLocation(){
-    int[] location = new int[]{location.x,location.y};
-    return location;
+    int[] ghostLocation = new int[]{(int)(location.x/26),(int)(location.y/31)};
+    return ghostLocation;
   }
   
   public void adjustSpeed(int newSpeed){
     movementSpeed = newSpeed;
   }
   
-  public void adjustState(String state){
+  public void adjustState(String state, int[] BlinkyLocation){
+    removeCurrentState();
     if (state.equals("scared")){
       scaredState=true;
     }
     if (state.equals("scatter")){
+      currentTarget = scatterTarget();
       scatteredState=true;
     }
     
     if (state.equals("chase")){
-      scaredState=true;
+      currentTarget = chaseTarget(currentUser, BlinkyLocation);
+      chaseState=true;
     }
     
     if (state.equals("eaten")){
@@ -112,21 +120,34 @@ public class Ghost{
   
    public String chooseDirection(){
     ArrayList<String> possibleDirections = new ArrayList<String>();
+    possibleDirections.add("up");
+    possibleDirections.add("left");
+    possibleDirections.add("down");
+    possibleDirections.add("right");
+    
+    if (ghostDirection.x==1){
+      possibleDirections.remove("left");
+    }
+    
+    if (ghostDirection.x==-1){
+      possibleDirections.remove("right");
+    }
+    
+    if (ghostDirection.y==1){
+      possibleDirections.remove("up");
+    }
+    
+    if (ghostDirection.y==-1){
+      possibleDirections.remove("down");
+    }
+    
+    for (int i=0;i<possibleDirections.size();i++){
+      
+    }
+    
   }
-
-  public void applyScatter(){}
-  
-  public void applyChase(){}
-  
-  public void applyEaten(){}
-  
-  public void applyScared(){}
 
   //states of movement
-  public void applyState(String state){
-    removeCurrentState();
-    adjustState(state);
-  }
   
   public int[] scatterTarget(){
     if (ghostName.equals("Pinky")){
@@ -152,7 +173,7 @@ public class Ghost{
     
   }
   
-  public int[] chaseTarget(PacMan player, Ghost blinky){
+  public int[] chaseTarget(PacMan player, int[] blinkyCoords){
     if (ghostName.equals("Pinky")){
       int[] target = player.getCurrentTile();
       String direction = player.getPacManDirection();
@@ -193,7 +214,6 @@ public class Ghost{
     
     if (ghostName.equals("Inky")){
       int[] target = player.getCurrentTile;
-      int[] blinkyLocation = blinky.getLocation();
       String direction = player.getPacManDirection();
       
       if (direction.equals("left")){
@@ -222,7 +242,7 @@ public class Ghost{
         target[1]=27;
       }
       
-      int[] adjustmentVector = new int[]{blinkyLocation[0]-target[0],blinkyLocation[1]-target[1]};
+      int[] adjustmentVector = new int[]{blinkyCoords[0]-target[0],blinkyCoords[1]-target[1]};
       target[0]-=adjustmentVector[0];
       target[1]-=adjustmentVector[1];
       
