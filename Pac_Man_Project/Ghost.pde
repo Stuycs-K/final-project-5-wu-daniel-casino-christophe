@@ -113,8 +113,14 @@ public class Ghost{
    public String chooseDirection(){
     ArrayList<String> possibleDirections = new ArrayList<String>();
   }
-  
 
+  public void applyScatter(){}
+  
+  public void applyChase(){}
+  
+  public void applyEaten(){}
+  
+  public void applyScared(){}
 
   //states of movement
   public void applyState(String state){
