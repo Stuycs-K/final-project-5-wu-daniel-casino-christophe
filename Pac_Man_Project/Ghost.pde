@@ -46,6 +46,10 @@ public class Ghost{
     image(ghost, location.x, location.y, size, size);
   }
   
+  public int[] getLocation(){
+    int[] location = new int[]{location.x,location.y};
+    return location;
+  }
   
   public void adjustSpeed(int newSpeed){
     movementSpeed = newSpeed;
@@ -136,19 +140,122 @@ public class Ghost{
     }
     
     if (ghostName.equals("Blinky")){
-      int[] target = new int[]{0, 28};
+      int[] target = new int[]{27,0};
       return target;
     }
     
     if (ghostName.equals("Inky")){
-      int[] target = new int[]{31, 28};
+      int[] target = new int[]{27,30};
       return target;
     }
     
     else{
-      int[] target = new int[]{31,0};
+      int[] target = new int[]{0,30};
       return target;
     }
+    
+    
+  }
+  
+  public int[] chaseTarget(PacMan player, Ghost blinky){
+    if (ghostName.equals("Pinky")){
+      int[] target = player.getCurrentTile();
+      String direction = player.getPacManDirection();
+      if (direction.equals("left")){
+        target[0]-=4;
+        if (target[0]<0){
+          target[0]=0;
+        }
+        return target;
+      }
+      
+      if (direction.equals("right")){
+        target[0]+=4;
+        if (target[0]>27){
+          target[0]=27;
+        }
+        return target;
+      }
+      
+      if (direction.equals("up")){
+        target[1]-=4;
+        if (target[1]<0){
+          target[1]=0;
+        }
+        return target;
+      }
+      
+      target[1]+=4;
+      if(target[1]>30){
+        target[1]=30;
+      }
+      return target;
+    }
+    
+    if (ghostName.equals("Blinky")){
+      return player.getCurrentTile();
+    }
+    
+    if (ghostName.equals("Inky")){
+      int[] target = player.getCurrentTile;
+      int[] blinkyLocation = blinky.getLocation();
+      String direction = player.getPacManDirection();
+      
+      if (direction.equals("left")){
+        target[0]-=2;
+        if (target[0]<0){
+          target[0]=0;
+        }
+      }
+      
+      if (direction.equals("right")){
+        target[0]+=2;
+        if (target[0]>27){
+          target[0]=27;
+        }
+      }
+      
+      if (direction.equals("up")){
+        target[1]-=2;
+        if (target[1]<0){
+          target[1]=0;
+        }
+      }
+      
+      target[1]+=2;
+      if(target[1]>27){
+        target[1]=27;
+      }
+      
+      int[] adjustmentVector = new int[]{blinkyLocation[0]-target[0],blinkyLocation[1]-target[1]};
+      target[0]-=adjustmentVector[0];
+      target[1]-=adjustmentVector[1];
+      
+      if (target[0]<0){
+        target[0]=0;
+      }
+      if (target[0]>27){
+        target[0]=27;
+      }
+      if (target[1]<0){
+        target[1]=0;
+      }
+      if (target[1]>30){
+        target[1]=30;
+      }
+      return target;
+    }
+    
+    int[] pacLocation = player.getCurrentTile();
+    int[] ghostLocation = getLocation();
+    int distanceFromPacMan = Math.sqrt(Math.pow((pacLocation[0]-ghostLocation[0]),2) + Math.pow((pacLocation[1]-ghostLocation[1]),2));
+    if (distanceFromPacMan>=8){
+      return pacLocation;
+    }
+    else{
+      return scatterTarget();
+    }
+    
     
     
   }
