@@ -119,6 +119,7 @@ public class Ghost{
   }
   
    public String chooseDirection(){
+    int[] gridLocation = getLocation();
     ArrayList<String> possibleDirections = new ArrayList<String>();
     possibleDirections.add("up");
     possibleDirections.add("left");
@@ -142,9 +143,59 @@ public class Ghost{
     }
     
     for (int i=0;i<possibleDirections.size();i++){
+      if (possibleDirections.get(i).equals("left")){
+        if (gridLocation[0]==0||ghostMap[gridLocation[1]][gridLocation[0]-1]==0){
+          possibleDirections.remove(i);
+          i--;
+        }
+      }
       
+      if (possibleDirections.get(i).equals("right")){
+        if (gridLocation[0]+1>27||ghostMap[gridLocation[1]][gridLocation[0]+1]==0){
+          possibleDirections.remove(i);
+          i--;
+        }
+      }
+      
+      if (possibleDirections.get(i).equals("up")){
+        if (gridLocation[1]==0||ghostMap[gridLocation[1]-1][gridLocation[0]]==0){
+          possibleDirections.remove(i);
+          i--;
+        }
+      }
+      
+      if (possibleDirections.get(i).equals("down")){
+        if (gridLocation[1]+1>27||ghostMap[gridLocation[1]+1][gridLocation[0]]==0){
+          possibleDirections.remove(i);
+          i--;
+        }
+      }
+    }
+     int lowestDistance = findDistanceFromTarget(possibleDirections.get(0),gridLocation);
+     String chosen = possibleDirections.get(0);
+     for (int i=0;i<possibleDirections.size();i++){
+       if (findDistanceFromTarget(possibleDirections.get(i), gridLocation)<lowestDistance){
+         chosen = possibleDirections.get(i);
+       }
+     }
+     
+     return chosen;
+    
+  }
+  
+  public int findDistanceFromTarget(String direction, int[] currentLocation){
+    if (direction.equals("left")){
+      return (int)(Math.sqrt(Math.pow(currentLocation[0]-1-currentTarget[0],2)+Math.pow(currentLocation[1]-currentTarget[1],2)));
     }
     
+    if (direction.equals("right")){
+      return (int)(Math.sqrt(Math.pow(currentLocation[0]+1-currentTarget[0],2)+Math.pow(currentLocation[1]-currentTarget[1],2)));
+    }
+    
+    if (direction.equals("up")){
+      return (int)(Math.sqrt(Math.pow(currentLocation[0]-currentTarget[0],2)+Math.pow(currentLocation[1]-1-currentTarget[1],2)));
+    }
+     return (int)(Math.sqrt(Math.pow(currentLocation[0]-currentTarget[0],2)+Math.pow(currentLocation[1]+1-currentTarget[1],2)));
   }
 
   //states of movement
