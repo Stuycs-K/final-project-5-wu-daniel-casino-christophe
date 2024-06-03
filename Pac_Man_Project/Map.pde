@@ -6,9 +6,9 @@ public class Map extends Game{
   
   public Map(){
     rowPixels = 812;
-    columnPixels = 1015;
+    columnPixels = 899;
     rowTiles=28;
-    columnTiles=36;
+    columnTiles=31;
   }
   
   public int getRP(){

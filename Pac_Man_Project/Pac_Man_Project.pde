@@ -4,15 +4,17 @@ PacMan currentPacMan;
 Map currentMap;
 
 void setup(){
-  size(812, 1015);
+  size(812, 899);
   keyboardInput = new KeyboardBuffer();
   currentPacMan = new PacMan();
   currentMap = new Map();
-  PImage PacManMapImage = loadImage("PacManMapFinal.jpg");
+  PImage PacManMapImage = loadImage("PacManMapVeryFinal.jpg");
   image(PacManMapImage,0,0);
 }
 
 void draw(){
+  PImage PacManMapImage = loadImage("PacManMapFinal.jpg");
+  image(PacManMapImage,0,0);
   circle(currentPacMan.x, currentPacMan.y, currentPacMan.size);
   //check if the button P1_LEFT is being pressed:
   if (keyboardInput.P1_UP) {
