@@ -1,6 +1,8 @@
 KeyboardBuffer keyboardInput;
 PacMan currentPacMan;
 Map currentMap;
+Game startup;
+int timer;
 
 void setup(){
   size(812, 899);
@@ -9,6 +11,8 @@ void setup(){
   currentMap = new Map();
   PImage PacManMapImage = loadImage("PacManMapVeryFinal.jpg");
   image(PacManMapImage,0,0);
+  startup = new Game();
+  timer = 0;
 }
 
 void draw(){
@@ -35,6 +39,14 @@ void draw(){
     rect(70, 10, 10, 10);
     currentPacMan.x += 8;
   }
+  
+  if (timer%10==0&&timer!=0){
+    startup.switchStates();
+  }
+  startup.run();
+  
+  timer++;
+  
   fill(0);
   text("Try pressing one or more\n of: A/D keys", 10, 50);
 }
