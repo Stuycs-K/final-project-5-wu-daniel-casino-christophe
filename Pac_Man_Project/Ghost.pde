@@ -27,7 +27,7 @@ public class Ghost{
   PacMan currentUser;
   
   // change the map parameter to GridSpace  
-  public Ghost(String ghostType, int[][] map, PacMan player){
+  public Ghost(String ghostType, int[][] map, PacMan player, int xCoord, int yCoord){
     ghost = loadImage(ghostType);
     movementSpeed = 8;
     size = 29;
@@ -39,7 +39,7 @@ public class Ghost{
     eatenState=false;
     scatteredState=true;
     
-    location = new PVector(0,0);
+    location = new PVector(xCoord,yCoord);
     xvelocity = new PVector(movementSpeed,0);
     yvelocity = new PVector(0,movementSpeed);
     
