@@ -27,7 +27,7 @@ public class PacMan{
     xvelocity = new PVector(movementSpeed,0);
     yvelocity = new PVector(0,movementSpeed);
     PImage PacManImage = loadImage("ClosedMouthFinal.jpg");
-    image(PacManImage,406,232);
+    image(PacManImage,388,899 - 232);
     PacManMap=map;
   }
   
