@@ -1,5 +1,4 @@
 KeyboardBuffer keyboardInput;
-Ghost Blinky;
 PacMan currentPacMan;
 Map currentMap;
 

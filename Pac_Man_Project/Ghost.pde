@@ -8,6 +8,7 @@ public class Ghost{
   //Physical Properties of the Ghosts
   private int movementSpeed;
   private int size;
+  private String ghostName;
   private PImage ghost;
   
   //States of Ghosts
@@ -19,19 +20,26 @@ public class Ghost{
   //map for ghosts
   private int[][] ghostMap;
   
+  //targeting system for ghost
+  private int[] currentTarget;
 
   // change the map parameter to GridSpace  
   public Ghost(String ghostType, int[][] map){
     ghost = loadImage(ghostType);
     movementSpeed = 8;
     size = 9;
+    ghostName = ghostType.substring(0, ghostType.length()-4);
+    ghostDirection = new PVector(0,1);
+    
     chaseState=false;
     scaredState=false;
     eatenState=false;
     scatteredState=true;
+    
     location = new PVector(0,0);
     xvelocity = new PVector(movementSpeed,0);
     yvelocity = new PVector(0,movementSpeed);
+    
     ghostMap=map;
   }
   
@@ -39,6 +47,16 @@ public class Ghost{
     image(ghost, location.x, location.y, size, size);
   }
   
+  //get methods
+  public String getName(){
+    return ghostName;
+  }
+
+  
+  public int[] getLocation(){
+    int[] location = new int[]{location.x,location.y};
+    return location;
+  }
   
   public void adjustSpeed(int newSpeed){
     movementSpeed = newSpeed;
@@ -92,14 +110,140 @@ public class Ghost{
     showGhost((int)location.x,(int) location.y);
   }
   
-  public void applyScatter(){}
-  
-  public void find
-  public void applyChase(){}
-  
-  public void applyEaten(){}
-  
-  public void applyScared(){}
+   public String chooseDirection(){
+    ArrayList<String> possibleDirections = new ArrayList<String>();
+  }
   
 
+
+  //states of movement
+  public void applyState(String state){
+    removeCurrentState();
+    adjustState(state);
+  }
+  
+  public int[] scatterTarget(){
+    if (ghostName.equals("Pinky")){
+      int[] target = new int[]{0,0};
+      return target;
+    }
+    
+    if (ghostName.equals("Blinky")){
+      int[] target = new int[]{27,0};
+      return target;
+    }
+    
+    if (ghostName.equals("Inky")){
+      int[] target = new int[]{27,30};
+      return target;
+    }
+    
+    else{
+      int[] target = new int[]{0,30};
+      return target;
+    }
+    
+    
+  }
+  
+  public int[] chaseTarget(PacMan player, Ghost blinky){
+    if (ghostName.equals("Pinky")){
+      int[] target = player.getCurrentTile();
+      String direction = player.getPacManDirection();
+      if (direction.equals("left")){
+        target[0]-=4;
+        if (target[0]<0){
+          target[0]=0;
+        }
+        return target;
+      }
+      
+      if (direction.equals("right")){
+        target[0]+=4;
+        if (target[0]>27){
+          target[0]=27;
+        }
+        return target;
+      }
+      
+      if (direction.equals("up")){
+        target[1]-=4;
+        if (target[1]<0){
+          target[1]=0;
+        }
+        return target;
+      }
+      
+      target[1]+=4;
+      if(target[1]>30){
+        target[1]=30;
+      }
+      return target;
+    }
+    
+    if (ghostName.equals("Blinky")){
+      return player.getCurrentTile();
+    }
+    
+    if (ghostName.equals("Inky")){
+      int[] target = player.getCurrentTile;
+      int[] blinkyLocation = blinky.getLocation();
+      String direction = player.getPacManDirection();
+      
+      if (direction.equals("left")){
+        target[0]-=2;
+        if (target[0]<0){
+          target[0]=0;
+        }
+      }
+      
+      if (direction.equals("right")){
+        target[0]+=2;
+        if (target[0]>27){
+          target[0]=27;
+        }
+      }
+      
+      if (direction.equals("up")){
+        target[1]-=2;
+        if (target[1]<0){
+          target[1]=0;
+        }
+      }
+      
+      target[1]+=2;
+      if(target[1]>27){
+        target[1]=27;
+      }
+      
+      int[] adjustmentVector = new int[]{blinkyLocation[0]-target[0],blinkyLocation[1]-target[1]};
+      target[0]-=adjustmentVector[0];
+      target[1]-=adjustmentVector[1];
+      
+      if (target[0]<0){
+        target[0]=0;
+      }
+      if (target[0]>27){
+        target[0]=27;
+      }
+      if (target[1]<0){
+        target[1]=0;
+      }
+      if (target[1]>30){
+        target[1]=30;
+      }
+      return target;
+    }
+    
+    int[] pacLocation = player.getCurrentTile();
+    int[] ghostLocation = getLocation();
+    int distanceFromPacMan = Math.sqrt(Math.pow((pacLocation[0]-ghostLocation[0]),2) + Math.pow((pacLocation[1]-ghostLocation[1]),2));
+    if (distanceFromPacMan>=8){
+      return pacLocation;
+    }
+    else{
+      return scatterTarget();
+    }   
+  }
+ 
 }
