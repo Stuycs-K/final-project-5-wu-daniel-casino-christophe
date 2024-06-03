@@ -43,5 +43,18 @@ public class KeyboardBuffer {
       P1_LEFT= false;
     }
   }
+  
+  public String getLastDirection(){
+    if(P1_UP == true){
+      return "up";
+    }
+    if(P1_DOWN == true){
+      return "down";
+    }
+    if(P1_LEFT == true){
+      return "left";
+    }
+    return "right";
+  }
 
 }

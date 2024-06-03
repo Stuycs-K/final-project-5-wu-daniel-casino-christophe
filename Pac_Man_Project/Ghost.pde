@@ -264,7 +264,7 @@ public class Ghost{
     }
     
     if (ghostName.equals("Inky")){
-      int[] target = player.getCurrentTile;
+      int[] target = player.getCurrentTile();
       String direction = player.getPacManDirection();
       
       if (direction.equals("left")){
@@ -314,7 +314,7 @@ public class Ghost{
     
     int[] pacLocation = player.getCurrentTile();
     int[] ghostLocation = getLocation();
-    int distanceFromPacMan = Math.sqrt(Math.pow((pacLocation[0]-ghostLocation[0]),2) + Math.pow((pacLocation[1]-ghostLocation[1]),2));
+    int distanceFromPacMan =(int) Math.sqrt(Math.pow((pacLocation[0]-ghostLocation[0]),2) + Math.pow((pacLocation[1]-ghostLocation[1]),2));
     if (distanceFromPacMan>=8){
       return pacLocation;
     }

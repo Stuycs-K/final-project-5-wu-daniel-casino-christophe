@@ -1,4 +1,5 @@
 public class PacMan{
+  KeyboardBuffer keyboardInput;
   int movementSpeed;
   int size;
   int score;
@@ -7,19 +8,27 @@ public class PacMan{
   int lifeCount;
   Boolean activeState;
   int ghostsConsumed;
+  private int[][] PacManMap;
   private PVector location;
   private PVector xvelocity;
   private PVector yvelocity;
   private PVector PacManDirection;
+  private PImage PacManImage;
   
-  public PacMan(){
+  public PacMan(int[][] map){
+    keyboardInput = new KeyboardBuffer();
     movementSpeed = 8;
     lifeCount = 3;
     score = 0;
     size = 29;
     addedLife = false;
-    xvelocity = 406;
-    yvelocity = 725;
+    PacManDirection = new PVector(0,1);
+    location = new PVector(0,0);
+    xvelocity = new PVector(movementSpeed,0);
+    yvelocity = new PVector(0,movementSpeed);
+    PImage PacManImage = loadImage("ClosedMouthFinal.jpg");
+    image(PacManImage,406,232);
+    PacManMap=map;
   }
   
   public int getLives(){
@@ -51,5 +60,42 @@ public class PacMan{
   
   public int getConsumedGhosts(){
     return ghostsConsumed;
+  }
+  
+  public String getPacManDirection(){
+    return keyboardInput.getLastDirection();
+  }
+  
+  public int[] getCurrentTile(){
+    int[] PacManLocation = new int[]{(int)(location.x/28),(int)(location.y/31)};
+    return PacManLocation;
+  }
+  
+  public void showPacMan(int xCoord, int yCoord){
+    image(PacManImage, location.x, location.y, size, size);
+  }
+  
+  public void applyDirection(String direction){
+    if (direction.equals("left")){
+      location.sub(xvelocity);
+      PacManDirection = new PVector(-1,0);
+    }
+    
+    if (direction.equals("right")){
+      location.add(xvelocity);
+      PacManDirection = new PVector(1,0);
+    }
+    
+    if (direction.equals("up")){
+      location.add(yvelocity);
+      PacManDirection = new PVector(0,1);
+    }
+    
+    if (direction.equals("down")){
+      location.sub(yvelocity);
+      PacManDirection = new PVector(0,-1);
+    }
+    
+    showPacMan((int)location.x,(int) location.y);
   }
 }
