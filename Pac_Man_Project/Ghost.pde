@@ -29,6 +29,7 @@ public class Ghost{
     movementSpeed = 8;
     size = 9;
     ghostName = ghostType.substring(0, ghostType.length()-4);
+    ghostDirection = new PVector(0,1);
     
     chaseState=false;
     scaredState=false;
@@ -45,6 +46,12 @@ public class Ghost{
   public void showGhost(int xCoord, int yCoord){
     image(ghost, location.x, location.y, size, size);
   }
+  
+  //get methods
+  public String getName(){
+    return ghostName;
+  }
+
   
   public int[] getLocation(){
     int[] location = new int[]{location.x,location.y};
@@ -103,34 +110,16 @@ public class Ghost{
     showGhost((int)location.x,(int) location.y);
   }
   
-  //get methods
-  public String getName(){
-    return ghostName;
+   public String chooseDirection(){
+    ArrayList<String> possibleDirections = new ArrayList<String>();
   }
+  
+
 
   //states of movement
   public void applyState(String state){
     removeCurrentState();
-    if (state.equals("Scatter")){
-      scatteredState=true;
-      currentTarget=scatterTarget();
-    }
-    
-    if (state.equals("Scared")){
-      scaredState=true;
-      currentTarget=scatterTarget();
-    }
-    
-    if (state.equals("Chase")){
-      chaseState=true;
-      currentTarget=scatterTarget();
-    }
-    
-    if (state.equals("Eaten")){
-      eatenState=true;
-      currentTarget=scatterTarget();
-    }
-    
+    adjustState(state);
   }
   
   public int[] scatterTarget(){
@@ -254,12 +243,7 @@ public class Ghost{
     }
     else{
       return scatterTarget();
-    }
-    
-    
-    
+    }   
   }
  
-  
-
 }
