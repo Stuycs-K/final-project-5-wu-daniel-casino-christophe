@@ -6,9 +6,11 @@ public class PacMan{
   Boolean addedLife;
   int lifeCount;
   Boolean activeState;
-  int x;
-  int y;
   int ghostsConsumed;
+  private PVector location;
+  private PVector xvelocity;
+  private PVector yvelocity;
+  private PVector PacManDirection;
   
   public PacMan(){
     movementSpeed = 8;
@@ -16,8 +18,8 @@ public class PacMan{
     score = 0;
     size = 29;
     addedLife = false;
-    x = 406;
-    y = 725;
+    xvelocity = 406;
+    yvelocity = 725;
   }
   
   public int getLives(){
