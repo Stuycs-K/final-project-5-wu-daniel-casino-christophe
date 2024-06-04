@@ -20,10 +20,6 @@ public class Game{
     Pinky = new Ghost("Pinky.jpg",map, player, 377,435);
     Inky = new Ghost("Inky.jpg",map, player, 348,435);
     Clyde = new Ghost("Clyde.jpg",map,player, 406,435);
-    Blinky.showGhost();
-      Pinky.showGhost();
-      Inky.showGhost();
-      Clyde.showGhost();
     
   }
   
@@ -44,11 +40,11 @@ public class Game{
     }
     
     
-    Blinky.applyDirection(Blinky.chooseDirection());
-    Pinky.applyDirection(Blinky.chooseDirection());
-    Inky.applyDirection(Blinky.chooseDirection());
-    Clyde.applyDirection(Blinky.chooseDirection());
-    Blinky.showGhost();
+   Blinky.applyDirection(Blinky.chooseDirection());
+    Pinky.applyDirection(Pinky.chooseDirection());
+    Inky.applyDirection(Inky.chooseDirection());
+    Clyde.applyDirection(Clyde.chooseDirection());
+      Blinky.showGhost();
       Pinky.showGhost();
       Inky.showGhost();
       Clyde.showGhost();

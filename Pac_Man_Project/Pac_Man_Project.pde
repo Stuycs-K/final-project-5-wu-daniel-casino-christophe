@@ -3,22 +3,34 @@ PacMan currentPacMan;
 Map currentMap;
 Game startup;
 int timer;
-
+PImage PacManMapImage;
+Ghost Blinky;
 void setup(){
   size(812, 899);
   keyboardInput = new KeyboardBuffer();
   currentMap = new Map();
   currentPacMan = new PacMan(currentMap.getTileMap());
-  PImage PacManMapImage = loadImage("PacManMapVeryFinal.jpg");
-  image(PacManMapImage,0,0);
+  PacManMapImage =   loadImage("PacManMapVeryFinal.jpg");
+  Blinky = new Ghost("Blinky.jpg",currentMap.getTileMap(), currentPacMan,0,0);
+  
   startup = new Game(currentMap.getTileMap());
   timer = 0;
 }
 
 void draw(){
-  PImage PacManMapImage = loadImage("PacManMapFinal.jpg");
   image(PacManMapImage,0,0);
+  currentPacMan.showPacMan();
+  println("Hello");
   //check if the button P1_LEFT is being pressed:
+  
+  startup.run();
+  
+  timer++;
+}
+
+void keyPressed() {
+  //send the number of the key pressed to your KeyboardBuffer object
+  keyboardInput.press(keyCode,true);
   if (keyboardInput.P1_UP) {
     currentPacMan.applyDirection("up");
   }
@@ -37,12 +49,4 @@ void draw(){
   if (timer%10==0&&timer!=0){
     startup.switchStates();
   }
-  startup.run();
-  
-  timer++;
-}
-
-void keyPressed() {
-  //send the number of the key pressed to your KeyboardBuffer object
-  keyboardInput.press(keyCode,true);
 }

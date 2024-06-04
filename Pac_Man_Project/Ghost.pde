@@ -29,7 +29,7 @@ public class Ghost{
   // change the map parameter to GridSpace  
   public Ghost(String ghostType, int[][] map, PacMan player, int xCoord, int yCoord){
     ghost = loadImage(ghostType);
-    movementSpeed = 8;
+    movementSpeed = 5;
     size = 29;
     ghostName = ghostType.substring(0, ghostType.length()-4);
     ghostDirection = new PVector(0,1);
@@ -38,7 +38,7 @@ public class Ghost{
     scaredState=false;
     eatenState=false;
     scatteredState=true;
-    
+    currentTarget = scatterTarget();
     location = new PVector(xCoord,yCoord);
     xvelocity = new PVector(movementSpeed,0);
     yvelocity = new PVector(0,movementSpeed);
@@ -106,13 +106,13 @@ public class Ghost{
     }
     
     if (direction.equals("up")){
-      location.add(yvelocity);
-      ghostDirection = new PVector(0,1);
+      location.sub(yvelocity);
+      ghostDirection = new PVector(0,-1);
     }
     
     if (direction.equals("down")){
-      location.sub(yvelocity);
-      ghostDirection = new PVector(0,-1);
+      location.add(yvelocity);
+      ghostDirection = new PVector(0,1);
     }
     
     showGhost();
@@ -143,35 +143,40 @@ public class Ghost{
     }
     
     for (int i=0;i<possibleDirections.size();i++){
+      
       if (possibleDirections.get(i).equals("left")){
         if (gridLocation[0]==0||ghostMap[gridLocation[1]][gridLocation[0]-1]==0){
           possibleDirections.remove(i);
-          
+          i--;
+        }
+        
+      }
+      else{
+        if (possibleDirections.get(i).equals("right")){
+          if (gridLocation[0]+1>27||ghostMap[gridLocation[1]][gridLocation[0]+1]==0){
+            possibleDirections.remove(i);
+            i--;
+          }
+        }
+        else{
+            if (possibleDirections.get(i).equals("up")){
+          if (gridLocation[1]==0||ghostMap[gridLocation[1]-1][gridLocation[0]]==0){
+            possibleDirections.remove(i);
+            i--;
+          }
+        }else{
+          if (possibleDirections.get(i).equals("down")){
+          if (gridLocation[1]+1>27||ghostMap[gridLocation[1]+1][gridLocation[0]]==0){
+            possibleDirections.remove(i);
+            i--;
+          }
+        }
+        }
         }
       }
-      
-      if (possibleDirections.get(i).equals("right")){
-        if (gridLocation[0]+1>27||ghostMap[gridLocation[1]][gridLocation[0]+1]==0){
-          possibleDirections.remove(i);
-          
-        }
-      }
-      
-      if (possibleDirections.get(i).equals("up")){
-        if (gridLocation[1]==0||ghostMap[gridLocation[1]-1][gridLocation[0]]==0){
-          possibleDirections.remove(i);
-          
-        }
-      }
-      
-      if (possibleDirections.get(i).equals("down")){
-        if (gridLocation[1]+1>27||ghostMap[gridLocation[1]+1][gridLocation[0]]==0){
-          possibleDirections.remove(i);
-          
-        }
-      }
-      i--;
+
     }
+    println(possibleDirections.size());
      int lowestDistance = findDistanceFromTarget(possibleDirections.get(0),gridLocation);
      String chosen = possibleDirections.get(0);
      for (int i=0;i<possibleDirections.size();i++){
@@ -179,6 +184,7 @@ public class Ghost{
          chosen = possibleDirections.get(i);
        }
      }
+     
      
      return chosen;
     

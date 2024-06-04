@@ -23,11 +23,10 @@ public class PacMan{
     size = 29;
     addedLife = false;
     PacManDirection = new PVector(0,1);
-    location = new PVector(0,0);
+    location = new PVector(388,667);
     xvelocity = new PVector(movementSpeed,0);
     yvelocity = new PVector(0,movementSpeed);
-    PImage PacManImage = loadImage("ClosedMouthFinal.jpg");
-    image(PacManImage,388,899 - 232);
+    PacManImage = loadImage("ClosedMouthFinal.jpg");
     PacManMap=map;
   }
   
