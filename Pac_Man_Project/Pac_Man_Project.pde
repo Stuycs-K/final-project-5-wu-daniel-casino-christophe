@@ -20,12 +20,22 @@ void setup(){
 void draw(){
   image(PacManMapImage,0,0);
   currentPacMan.showPacMan();
-  println("Hello");
-  //check if the button P1_LEFT is being pressed:
   
   startup.run();
   
   timer++;
+  if(currentPacMan.getCurrentTile() == startup.getBlinky().getLocation()){
+    exit();
+  }
+  if(currentPacMan.getCurrentTile() == startup.getInky().getLocation()){
+    exit();
+  }
+  if(currentPacMan.getCurrentTile() == startup.getPinky().getLocation()){
+    exit();
+  }
+  if(currentPacMan.getCurrentTile() == startup.getClyde().getLocation()){
+    exit();
+  }
 }
 
 void keyPressed() {

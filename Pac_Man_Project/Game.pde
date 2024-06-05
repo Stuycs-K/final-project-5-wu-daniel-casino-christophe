@@ -56,4 +56,17 @@ public class Game{
       currentState=0;
     }
   }
+  
+  public Ghost getBlinky(){
+    return Blinky;
+  }
+  public Ghost getInky(){
+    return Inky;
+  }
+  public Ghost getPinky(){
+    return Pinky;
+  }
+  public Ghost getClyde(){
+    return Clyde;
+  }
 }
