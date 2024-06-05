@@ -86,13 +86,13 @@ public class PacMan{
     }
     
     if (direction.equals("up")){
-      location.add(yvelocity);
-      PacManDirection = new PVector(0,1);
+      location.sub(yvelocity);
+      PacManDirection = new PVector(0,-1);
     }
     
     if (direction.equals("down")){
-      location.sub(yvelocity);
-      PacManDirection = new PVector(0,-1);
+      location.add(yvelocity);
+      PacManDirection = new PVector(0,1);
     }
     
     showPacMan();

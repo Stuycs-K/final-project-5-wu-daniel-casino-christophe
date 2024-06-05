@@ -24,7 +24,9 @@ void draw(){
   //check if the button P1_LEFT is being pressed:
   
   startup.run();
-  
+  if (timer%10==0&&timer!=0){
+    startup.switchStates();
+  }
   timer++;
 }
 
@@ -46,7 +48,5 @@ void keyPressed() {
   if (keyboardInput.P1_RIGHT) {
     currentPacMan.applyDirection("right");
   }
-  if (timer%10==0&&timer!=0){
-    startup.switchStates();
-  }
+  
 }

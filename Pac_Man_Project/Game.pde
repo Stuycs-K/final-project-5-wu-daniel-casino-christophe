@@ -18,7 +18,7 @@ public class Game{
     currentState=0;
     Blinky = new Ghost("Blinky.jpg", map, player, 377,348);
     Pinky = new Ghost("Pinky.jpg",map, player, 377,435);
-    Inky = new Ghost("Inky.jpg",map, player, 348,435);
+    Inky = new Ghost("Inky.jpg",map, player, 348,406);
     Clyde = new Ghost("Clyde.jpg",map,player, 406,435);
     
   }
