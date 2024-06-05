@@ -24,7 +24,7 @@ void draw(){
   startup.run();
   
   timer++;
-  if(currentPacMan.getCurrentTile() == startup.getBlinky().getLocation()){
+  if(currentPacMan.getCurrentTile()[0] == startup.getBlinky().getLocation()[0] && currentPacMan.getCurrentTile()[1] == startup.getBlinky().getLocation()[1]){
     exit();
   }
   if(currentPacMan.getCurrentTile() == startup.getInky().getLocation()){
