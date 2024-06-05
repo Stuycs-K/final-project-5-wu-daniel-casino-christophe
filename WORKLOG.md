@@ -71,3 +71,7 @@ info
 - Added Map image
 - Moved a lot of the map properties from the main class to the map class
 - Reimplemented the map properties into the main class by adding an instance of the map into the main class
+
+### 6/4/24
+- Tried to fix collisions between ghosts, pacman, and the walls
+- Attempted to switch the Pac-Man movement into PVectors while keeping it constantly moving
