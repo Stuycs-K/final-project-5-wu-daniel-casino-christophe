@@ -12,6 +12,7 @@ public class Ghost{
   private PImage ghost;
   
   //States of Ghosts
+  private boolean initialTargetReached;
   private boolean scaredState;
   private boolean scatteredState;
   private boolean chaseState;
@@ -34,11 +35,12 @@ public class Ghost{
     ghostName = ghostType.substring(0, ghostType.length()-4);
     ghostDirection = new PVector(0,1);
     
+    initialTargetReached = false;
     chaseState=false;
     scaredState=false;
     eatenState=false;
     scatteredState=true;
-    currentTarget = scatterTarget();
+    currentTarget = new int[] {13,11};
     location = new PVector(xCoord,yCoord);
     xvelocity = new PVector(movementSpeed,0);
     yvelocity = new PVector(0,movementSpeed);
@@ -46,6 +48,14 @@ public class Ghost{
     ghostMap=map;
     
     currentUser=player;
+  }
+  
+  public boolean outOfBox(){
+    return initialTargetReached;
+  }
+  
+  public void targetReached(){
+    initialTargetReached=true;
   }
   
   public void showGhost(){
