@@ -31,6 +31,11 @@
 - Added decision-making process for the ghosts
 - Worked on Game class to run the game
 
+### 6/3/34
+- Fixed ghost movement and applyDirection
+- Made a changeState to swap states for ghosts in levels
+- Ghosts start in scatter state
+
 ### date y
 
 info
