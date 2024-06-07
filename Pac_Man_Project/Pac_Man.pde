@@ -23,6 +23,7 @@ public class PacMan{
     addedLife = false;
     PacManDirection = new PVector(0,1);
     location = new PVector(388,667);
+    //location = new PVector(100,800);
     PacManImage = loadImage("ClosedMouthFinal.jpg");
     PacManMap=map;
   }
@@ -63,18 +64,18 @@ public class PacMan{
   }
   
   public int[] getCurrentTile(){
-    int[] PacManLocation = new int[]{(int)(location.x/28),(int)(location.y/31)};
-    println(Arrays.toString(PacManLocation));
+    int[] PacManLocation = new int[]{(int)(location.x/29),(int)(location.y/29)};
+    println("gCT" + Arrays.toString(PacManLocation));
     return PacManLocation;
   }
   
   public int getAnyTileNumber(int x, int y){
-    int[] tileLocation = new int[]{(int)x/28, (int)y/31};
-    return PacManMap[tileLocation[0]][tileLocation[1]];
+    int[] tileLocation = new int[]{(int)x/29, (int)y/29};
+    return PacManMap[tileLocation[1]][tileLocation[0]];
   }
   
   public void showPacMan(){
-    image(PacManImage, location.x, location.y, size, size);
+    image(PacManImage, location.x - 14, location.y - 14, size, size);
   }
   
   public void updateLocation(){

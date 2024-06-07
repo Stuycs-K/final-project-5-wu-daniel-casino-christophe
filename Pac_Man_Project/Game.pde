@@ -55,6 +55,7 @@ public class Game{
     if (currentState>=ghostStates.length){
       currentState=0;
     }
+    
   }
   
   public Ghost getBlinky(){

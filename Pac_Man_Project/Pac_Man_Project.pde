@@ -27,18 +27,7 @@ void draw(){
   
   timer++;
   currentPacMan.updateLocation();
-  if(currentPacMan.getCurrentTile()[0] == startup.getBlinky().getLocation()[0] && currentPacMan.getCurrentTile()[1] == startup.getBlinky().getLocation()[1]){
-    exit();
-  }
-  if(currentPacMan.getCurrentTile() == startup.getInky().getLocation()){
-    exit();
-  }
-  if(currentPacMan.getCurrentTile() == startup.getPinky().getLocation()){
-    exit();
-  }
-  if(currentPacMan.getCurrentTile() == startup.getClyde().getLocation()){
-    exit();
-  }
+  currentPacMan.getCurrentTile();
 }
 
 void keyPressed() {
