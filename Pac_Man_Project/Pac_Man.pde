@@ -103,10 +103,35 @@ public class PacMan{
   }
   
   public void applyDirection(String direction){
+    
     if (direction.equals("up")){
-      PacManDirection = new PVector(0,-7);
+       PVector tempUp = PVector.add(location, new PVector(0,-7));
+       if(getAnyTileNumber((int)tempUp.x, (int)tempUp.y) != 0){
+        PacManDirection = new PVector(0,-7);
+      }
     }
-    if (direction.equals("down")){
+      if (direction.equals("down")){
+       PVector tempDown = PVector.add(location, new PVector(0,7));
+       if(getAnyTileNumber((int)tempDown.x, (int)tempDown.y) != 0){
+        PacManDirection = new PVector(0,7);
+      }
+    }
+      if (direction.equals("left")){
+       PVector tempLeft = PVector.add(location, new PVector(-7,0));
+       if(getAnyTileNumber((int)tempLeft.x, (int)tempLeft.y) != 0){
+        PacManDirection = new PVector(-7, 0);
+      }
+    }
+      if (direction.equals("right")){
+       PVector tempRight = PVector.add(location, new PVector(7,0));
+       if(getAnyTileNumber((int)tempRight.x, (int)tempRight.y) != 0){
+        PacManDirection = new PVector(7,0);
+      }
+    }
+    
+    
+    
+    /*if (direction.equals("down")){
       PacManDirection = new PVector(0,7);
     }
     if (direction.equals("left")){
@@ -114,7 +139,7 @@ public class PacMan{
     }
     if (direction.equals("right")){
       PacManDirection = new PVector(7,0);
-    }
+    }*/
     showPacMan();
   }
 }
