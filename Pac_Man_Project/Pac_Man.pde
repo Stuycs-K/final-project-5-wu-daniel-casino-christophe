@@ -1,3 +1,4 @@
+import java.util.*;
 public class PacMan{
   KeyboardBuffer keyboardInput;
   int movementSpeed;
@@ -10,8 +11,6 @@ public class PacMan{
   int ghostsConsumed;
   private int[][] PacManMap;
   private PVector location;
-  private PVector xvelocity;
-  private PVector yvelocity;
   private PVector PacManDirection;
   private PImage PacManImage;
   
@@ -24,8 +23,6 @@ public class PacMan{
     addedLife = false;
     PacManDirection = new PVector(0,1);
     location = new PVector(388,667);
-    xvelocity = new PVector(movementSpeed,0);
-    yvelocity = new PVector(0,movementSpeed);
     PacManImage = loadImage("ClosedMouthFinal.jpg");
     PacManMap=map;
   }
@@ -67,34 +64,56 @@ public class PacMan{
   
   public int[] getCurrentTile(){
     int[] PacManLocation = new int[]{(int)(location.x/28),(int)(location.y/31)};
+    println(Arrays.toString(PacManLocation));
     return PacManLocation;
+  }
+  
+  public int getAnyTileNumber(int x, int y){
+    int[] tileLocation = new int[]{(int)x/28, (int)y/31};
+    return PacManMap[tileLocation[0]][tileLocation[1]];
   }
   
   public void showPacMan(){
     image(PacManImage, location.x, location.y, size, size);
   }
   
+  public void updateLocation(){
+    PVector temp = PVector.add(location, PacManDirection);
+    if(PacManDirection.equals(new PVector(0,-7))){
+      if(getAnyTileNumber((int)temp.x, (int)temp.y) != 0){
+        location.add(PacManDirection);
+      }
+    }
+    if(PacManDirection.equals(new PVector(0,7))){
+      if(getAnyTileNumber((int)temp.x, (int)temp.y + 29) != 0){
+        location.add(PacManDirection);
+      }
+    }
+    if(PacManDirection.equals(new PVector(-7,0))){
+      if(getAnyTileNumber((int)temp.x, (int)temp.y) != 0){
+        location.add(PacManDirection);
+      }
+    }
+    if(PacManDirection.equals(new PVector(7,0))){
+      if(getAnyTileNumber((int)temp.x + 29, (int)temp.y) != 0){
+        location.add(PacManDirection);
+      }
+    }
+  }
+  
   public void applyDirection(String direction){
-    if (direction.equals("left")){
-      location.sub(xvelocity);
-      PacManDirection = new PVector(-1,0);
-    }
-    
-    if (direction.equals("right")){
-      location.add(xvelocity);
-      PacManDirection = new PVector(1,0);
-    }
-    
     if (direction.equals("up")){
-      location.sub(yvelocity);
-      PacManDirection = new PVector(0,-1);
+      PacManDirection = new PVector(0,-7);
     }
-    
     if (direction.equals("down")){
-      location.add(yvelocity);
-      PacManDirection = new PVector(0,1);
+      PacManDirection = new PVector(0,7);
     }
-    
+    if (direction.equals("left")){
+      PacManDirection = new PVector(-7,0);
+    }
+    if (direction.equals("right")){
+      PacManDirection = new PVector(7,0);
+    }
     showPacMan();
   }
 }

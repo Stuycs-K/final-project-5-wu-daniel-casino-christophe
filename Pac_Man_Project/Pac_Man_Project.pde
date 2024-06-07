@@ -9,8 +9,10 @@ void setup(){
   size(812, 899);
   keyboardInput = new KeyboardBuffer();
   currentMap = new Map();
+  PacManMapImage = loadImage("PacManMapVeryFinal.jpg");
   currentPacMan = new PacMan(currentMap.getTileMap());
-  PacManMapImage =   loadImage("PacManMapVeryFinal.jpg");
+  currentPacMan.applyDirection("left");
+  currentPacMan.updateLocation();
   Blinky = new Ghost("Blinky.jpg",currentMap.getTileMap(), currentPacMan,0,0);
   
   startup = new Game(currentMap.getTileMap());
@@ -24,6 +26,7 @@ void draw(){
   startup.run();
   
   timer++;
+  currentPacMan.updateLocation();
   if(currentPacMan.getCurrentTile()[0] == startup.getBlinky().getLocation()[0] && currentPacMan.getCurrentTile()[1] == startup.getBlinky().getLocation()[1]){
     exit();
   }
