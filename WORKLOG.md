@@ -78,5 +78,9 @@ info
 - Reimplemented the map properties into the main class by adding an instance of the map into the main class
 
 ### 6/4/24
-- Tried to fix collisions between ghosts, pacman, and the walls
+- Tried to fix collisions between ghosts, Pac-Man, and the walls
 - Attempted to switch the Pac-Man movement into PVectors while keeping it constantly moving
+
+### 6/6/24
+- Added collisions between Pac-Man and walls, however it is not fully done
+- Fixed PVector movement of Pac-Man fully and made his movement constant
