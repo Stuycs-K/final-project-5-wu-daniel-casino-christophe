@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class Game{
   private int highScore;
   private int gameOver;
@@ -15,9 +16,10 @@ public class Game{
   
   public Game(int[][] map){
     highScore = 0;
+    currentState = 0;
+    PacManMapImage = loadImage("PacManMapVeryFinal.jpg");
     player = new PacMan(map, 3);
     ghostStates = new String[]{"scatter", "chase"};
-    currentState=0;
     Blinky = new Ghost("Blinky.jpg", map, player, 377,348);
     Pinky = new Ghost("Pinky.jpg",map, player, 377,435);
     Inky = new Ghost("Inky.jpg",map, player, 348,406);
@@ -25,10 +27,10 @@ public class Game{
     keyboardInput = new KeyboardBuffer();
     player.applyDirection("left");
     player.updateLocation();
-    PacManMapImage = loadImage("PacManMapVeryFinal.jpg");
   }
   
   public void run(){
+    image(PacManMapImage,0,0);
     if (ghostStates[currentState].equals("scatter")){
       Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
       Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
@@ -45,14 +47,23 @@ public class Game{
     }
     
     
-   Blinky.applyDirection(Blinky.chooseDirection());
+    Blinky.applyDirection(Blinky.chooseDirection());
     Pinky.applyDirection(Pinky.chooseDirection());
     Inky.applyDirection(Inky.chooseDirection());
     Clyde.applyDirection(Clyde.chooseDirection());
-      Blinky.showGhost();
-      Pinky.showGhost();
-      Inky.showGhost();
-      Clyde.showGhost();
+    Blinky.showGhost();
+    Pinky.showGhost();
+    Inky.showGhost();
+    Clyde.showGhost();
+    println("ghost?");
+      
+    player.showPacMan();
+    player.updateLocation();
+    player.getCurrentTile();
+    if(collision()){
+      player.subtractLife();
+      player.moveToStart();
+    }
   }
   
   public void switchStates(){
@@ -60,7 +71,6 @@ public class Game{
     if (currentState>=ghostStates.length){
       currentState=0;
     }
-    
   }
   
   public void keyboardSetter(int code, boolean pressed){
@@ -85,13 +95,6 @@ public class Game{
     return player;
   }
   
-  public void update(){
-    image(PacManMapImage,0,0);
-    player.showPacMan();
-    player.updateLocation();
-    player.getCurrentTile();
-  }
-  
   public void updateKeyboard(){
     if (keyboardInput.P1_UP) {
       player.applyDirection("up");
@@ -111,6 +114,16 @@ public class Game{
   }
   
   public Boolean collision(){
+    ArrayList<Ghost> ghostList = new ArrayList<Ghost>();
+    ghostList.add(Blinky);
+    ghostList.add(Inky);
+    ghostList.add(Pinky);
+    ghostList.add(Clyde);
+    for(Ghost g: ghostList){
+      if((g.getLocation()[0] == player.getCurrentTile()[0]) && (g.getLocation()[1] == player.getCurrentTile()[1])){
+        return true;
+      }
+    }
     return false;
   }
 }

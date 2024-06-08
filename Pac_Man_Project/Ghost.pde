@@ -59,7 +59,7 @@ public class Ghost{
 
   
   public int[] getLocation(){
-    int[] ghostLocation = new int[]{(int)(location.x/26),(int)(location.y/31)};
+    int[] ghostLocation = new int[]{(int)(location.x/29),(int)(location.y/29)};
     return ghostLocation;
   }
   

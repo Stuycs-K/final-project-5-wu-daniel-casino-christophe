@@ -10,7 +10,6 @@ void setup(){
 }
 
 void draw(){
-  game.update();
   game.run();
   timer++;
 }

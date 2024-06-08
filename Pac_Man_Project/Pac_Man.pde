@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Arrays;
 public class PacMan{
   KeyboardBuffer keyboardInput;
   int movementSpeed;
@@ -22,9 +22,9 @@ public class PacMan{
     size = 29;
     addedLife = false;
     PacManDirection = new PVector(0,1);
-    location = new PVector(388,667);
     PacManImage = loadImage("ClosedMouthFinal.jpg");
     PacManMap=map;
+    moveToStart();
   }
   
   public int getLives(){
@@ -51,7 +51,7 @@ public class PacMan{
   }
   
   public void subtractLife(){
-    //if(true== == !Scared){}
+    lifeCount--;
   }
   
   public int getConsumedGhosts(){
@@ -68,8 +68,6 @@ public class PacMan{
   
   public int[] getCurrentTile(){
     int[] PacManLocation = new int[]{(int)(location.x/29),(int)(location.y/29)};
-    println("gCT" + Arrays.toString(PacManLocation));
-    println("direction" + PacManDirection);
     return PacManLocation;
   }
   
@@ -118,5 +116,9 @@ public class PacMan{
       }
     }
     showPacMan();
+  }
+  
+  public void moveToStart(){
+    location = new PVector(388,667);
   }
 }
