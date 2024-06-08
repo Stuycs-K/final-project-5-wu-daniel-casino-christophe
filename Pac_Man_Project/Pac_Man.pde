@@ -63,83 +63,59 @@ public class PacMan{
     return keyboardInput.getLastDirection();
   }
   
-  public int[] getCurrentTile(){
-    int[] PacManLocation = new int[]{(int)(location.x/29),(int)(location.y/29)};
-    println("gCT" + Arrays.toString(PacManLocation));
-    return PacManLocation;
-  }
-  
-  public int getAnyTileNumber(int x, int y){
-    int[] tileLocation = new int[]{(int)x/29, (int)y/29};
-    return PacManMap[tileLocation[1]][tileLocation[0]];
-  }
-  
   public void showPacMan(){
     image(PacManImage, location.x - 14, location.y - 14, size, size);
   }
   
-  public void updateLocation(){
-    PVector temp = PVector.add(location, PacManDirection);
+  public int[] getCurrentTile(){
+    int[] PacManLocation = new int[]{(int)(location.x/29),(int)(location.y/29)};
+    println("gCT" + Arrays.toString(PacManLocation));
+    println("direction" + PacManDirection);
+    return PacManLocation;
+  }
+  
+  public void updateLocation(){    
     if(PacManDirection.equals(new PVector(0,-7))){
-      if(getAnyTileNumber((int)temp.x, (int)temp.y) != 0){
+      if(PacManMap[getCurrentTile()[1] - 1][getCurrentTile()[0]] != 0){
         location.add(PacManDirection);
       }
-    }
-    if(PacManDirection.equals(new PVector(0,7))){
-      if(getAnyTileNumber((int)temp.x, (int)temp.y + 29) != 0){
+    } else if(PacManDirection.equals(new PVector(0,7))){
+      if(PacManMap[getCurrentTile()[1] + 1][getCurrentTile()[0]] != 0){
         location.add(PacManDirection);
       }
-    }
-    if(PacManDirection.equals(new PVector(-7,0))){
-      if(getAnyTileNumber((int)temp.x, (int)temp.y) != 0){
+    } else if(PacManDirection.equals(new PVector(-7,0))){
+      if(PacManMap[getCurrentTile()[1]][getCurrentTile()[0] - 1] != 0){
         location.add(PacManDirection);
       }
-    }
-    if(PacManDirection.equals(new PVector(7,0))){
-      if(getAnyTileNumber((int)temp.x + 29, (int)temp.y) != 0){
+      if(PacManMap[getCurrentTile()[1]][getCurrentTile()[0] - 1] == 5){
+        
+        location.add(PacManDirection);
+      }
+    } else if(PacManDirection.equals(new PVector(7,0))){
+      if(PacManMap[getCurrentTile()[1]][getCurrentTile()[0] + 1] != 0){
         location.add(PacManDirection);
       }
     }
   }
   
   public void applyDirection(String direction){
-    
     if (direction.equals("up")){
-       PVector tempUp = PVector.add(location, new PVector(0,-7));
-       if(getAnyTileNumber((int)tempUp.x, (int)tempUp.y) != 0){
+       if(PacManMap[getCurrentTile()[1] - 1][getCurrentTile()[0]] != 0){
         PacManDirection = new PVector(0,-7);
       }
-    }
-      if (direction.equals("down")){
-       PVector tempDown = PVector.add(location, new PVector(0,7));
-       if(getAnyTileNumber((int)tempDown.x, (int)tempDown.y) != 0){
+    } else if (direction.equals("down")){
+       if(PacManMap[getCurrentTile()[1] + 1][getCurrentTile()[0]] != 0){
         PacManDirection = new PVector(0,7);
       }
-    }
-      if (direction.equals("left")){
-       PVector tempLeft = PVector.add(location, new PVector(-7,0));
-       if(getAnyTileNumber((int)tempLeft.x, (int)tempLeft.y) != 0){
+    } else if (direction.equals("left")){
+       if(PacManMap[getCurrentTile()[1]][getCurrentTile()[0] - 1] != 0){
         PacManDirection = new PVector(-7, 0);
       }
-    }
-      if (direction.equals("right")){
-       PVector tempRight = PVector.add(location, new PVector(7,0));
-       if(getAnyTileNumber((int)tempRight.x, (int)tempRight.y) != 0){
+    } else if (direction.equals("right")){
+       if(PacManMap[getCurrentTile()[1]][getCurrentTile()[0] + 1] != 0){
         PacManDirection = new PVector(7,0);
       }
     }
-    
-    
-    
-    /*if (direction.equals("down")){
-      PacManDirection = new PVector(0,7);
-    }
-    if (direction.equals("left")){
-      PacManDirection = new PVector(-7,0);
-    }
-    if (direction.equals("right")){
-      PacManDirection = new PVector(7,0);
-    }*/
     showPacMan();
   }
 }

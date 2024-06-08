@@ -14,7 +14,6 @@ void setup(){
   currentPacMan.applyDirection("left");
   currentPacMan.updateLocation();
   Blinky = new Ghost("Blinky.jpg",currentMap.getTileMap(), currentPacMan,0,0);
-  
   startup = new Game(currentMap.getTileMap());
   timer = 0;
 }
@@ -22,9 +21,7 @@ void setup(){
 void draw(){
   image(PacManMapImage,0,0);
   currentPacMan.showPacMan();
-  
   startup.run();
-  
   timer++;
   currentPacMan.updateLocation();
   currentPacMan.getCurrentTile();
