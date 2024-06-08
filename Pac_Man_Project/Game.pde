@@ -3,13 +3,15 @@ public class Game{
   private int gameOver;
   private int levelWin;
   private int levelDifficulty;
+  private int currentState;
   private String[] ghostStates;
+  private PImage PacManMapImage;
+  private KeyboardBuffer keyboardInput;
   private PacMan player;
   private Ghost Blinky;
   private Ghost Pinky;
   private Ghost Inky;
   private Ghost Clyde;
-  private int currentState;
   
   public Game(int[][] map){
     highScore = 0;
@@ -20,7 +22,10 @@ public class Game{
     Pinky = new Ghost("Pinky.jpg",map, player, 377,435);
     Inky = new Ghost("Inky.jpg",map, player, 348,406);
     Clyde = new Ghost("Clyde.jpg",map,player, 406,435);
-    
+    keyboardInput = new KeyboardBuffer();
+    player.applyDirection("left");
+    player.updateLocation();
+    PacManMapImage = loadImage("PacManMapVeryFinal.jpg");
   }
   
   public void run(){
@@ -58,6 +63,11 @@ public class Game{
     
   }
   
+  public void keyboardSetter(int code, boolean pressed){
+    keyboardInput.press(code, pressed);
+    updateKeyboard();
+  }
+  
   public Ghost getBlinky(){
     return Blinky;
   }
@@ -69,5 +79,34 @@ public class Game{
   }
   public Ghost getClyde(){
     return Clyde;
+  }
+  
+  public PacMan getPlayer(){
+    return player;
+  }
+  
+  public void update(){
+    image(PacManMapImage,0,0);
+    player.showPacMan();
+    player.updateLocation();
+    player.getCurrentTile();
+  }
+  
+  public void updateKeyboard(){
+    if (keyboardInput.P1_UP) {
+      player.applyDirection("up");
+    }
+    //check if the button P1_RIGHT is being pressed:
+    if (keyboardInput.P1_DOWN) {
+      player.applyDirection("down");
+    }
+    //check if the button P1_LEFT is being pressed:
+    if (keyboardInput.P1_LEFT) {
+      player.applyDirection("left");
+    }
+    //check if the button P1_RIGHT is being pressed:
+    if (keyboardInput.P1_RIGHT) {
+      player.applyDirection("right");
+    }
   }
 }

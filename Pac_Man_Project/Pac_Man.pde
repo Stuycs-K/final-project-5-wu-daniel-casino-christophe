@@ -4,11 +4,11 @@ public class PacMan{
   int movementSpeed;
   int size;
   int score;
+  int lifeCount;
+  int ghostsConsumed;
   Boolean alive;
   Boolean addedLife;
-  int lifeCount;
   Boolean activeState;
-  int ghostsConsumed;
   private int[][] PacManMap;
   private PVector location;
   private PVector PacManDirection;
@@ -88,12 +88,14 @@ public class PacMan{
         location.add(PacManDirection);
       }
       if(PacManMap[getCurrentTile()[1]][getCurrentTile()[0] - 1] == 5){
-        
-        location.add(PacManDirection);
+        location.set(807, 430);
       }
     } else if(PacManDirection.equals(new PVector(7,0))){
       if(PacManMap[getCurrentTile()[1]][getCurrentTile()[0] + 1] != 0){
         location.add(PacManDirection);
+      }
+      if(PacManMap[getCurrentTile()[1]][getCurrentTile()[0] + 1] == 6){
+        location.set(5, 430);
       }
     }
   }
