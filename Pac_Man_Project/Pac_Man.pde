@@ -14,16 +14,15 @@ public class PacMan{
   private PVector PacManDirection;
   private PImage PacManImage;
   
-  public PacMan(int[][] map){
+  public PacMan(int[][] map, int lives){
     keyboardInput = new KeyboardBuffer();
     movementSpeed = 8;
-    lifeCount = 3;
+    lifeCount = lives;
     score = 0;
     size = 29;
     addedLife = false;
     PacManDirection = new PVector(0,1);
     location = new PVector(388,667);
-    //location = new PVector(100,800);
     PacManImage = loadImage("ClosedMouthFinal.jpg");
     PacManMap=map;
   }

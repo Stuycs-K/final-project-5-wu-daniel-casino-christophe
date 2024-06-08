@@ -15,7 +15,7 @@ public class Game{
   
   public Game(int[][] map){
     highScore = 0;
-    player = new PacMan(map);
+    player = new PacMan(map, 3);
     ghostStates = new String[]{"scatter", "chase"};
     currentState=0;
     Blinky = new Ghost("Blinky.jpg", map, player, 377,348);
@@ -108,5 +108,9 @@ public class Game{
     if (keyboardInput.P1_RIGHT) {
       player.applyDirection("right");
     }
+  }
+  
+  public Boolean collision(){
+    return false;
   }
 }
