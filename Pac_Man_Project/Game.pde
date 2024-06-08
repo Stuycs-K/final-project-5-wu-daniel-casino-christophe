@@ -7,6 +7,7 @@ public class Game{
   private int currentState;
   private String[] ghostStates;
   private PImage PacManMapImage;
+  private Map currentMap;
   private KeyboardBuffer keyboardInput;
   private PacMan player;
   private Ghost Blinky;
@@ -14,16 +15,17 @@ public class Game{
   private Ghost Inky;
   private Ghost Clyde;
   
-  public Game(int[][] map){
+  public Game(){
     highScore = 0;
     currentState = 0;
+    currentMap = new Map();
     PacManMapImage = loadImage("PacManMapVeryFinal.jpg");
-    player = new PacMan(map, 3);
+    player = new PacMan(currentMap.tileMap, 3);
     ghostStates = new String[]{"scatter", "chase"};
-    Blinky = new Ghost("Blinky.jpg", map, player, 377,348);
-    Pinky = new Ghost("Pinky.jpg",map, player, 377,435);
-    Inky = new Ghost("Inky.jpg",map, player, 348,406);
-    Clyde = new Ghost("Clyde.jpg",map,player, 406,435);
+    Blinky = new Ghost("Blinky.jpg", currentMap.tileMap, player, 377,348);
+    Pinky = new Ghost("Pinky.jpg",currentMap.tileMap, player, 377,435);
+    Inky = new Ghost("Inky.jpg",currentMap.tileMap, player, 348,406);
+    Clyde = new Ghost("Clyde.jpg",currentMap.tileMap,player, 406,435);
     keyboardInput = new KeyboardBuffer();
     player.applyDirection("left");
     player.updateLocation();
@@ -31,6 +33,18 @@ public class Game{
   
   public void run(){
     image(PacManMapImage,0,0);
+    for(int i = 0; i < currentMap.getRowTiles(); i++){
+      for(int j = 0; j < currentMap.getColumnTiles(); j++){
+        if(currentMap.tileMap[j][i] == 2){
+          fill(255, 255, 0);
+          circle(i * 29 + 14, j * 29 + 14, 10);
+        }
+        if(currentMap.tileMap[j][i] == 3){
+          fill(255, 255, 0);
+          circle(i * 29 + 14, j * 29 + 14, 20);
+        }
+      }
+    }
     if (ghostStates[currentState].equals("scatter")){
       Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
       Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
@@ -55,15 +69,20 @@ public class Game{
     Pinky.showGhost();
     Inky.showGhost();
     Clyde.showGhost();
-    println("ghost?");
+    
+    fill(255);
+    textSize(40);
+    text("Score", 32, 323);
+    text("" + player.getScore(), 38, 349);
       
     player.showPacMan();
     player.updateLocation();
     player.getCurrentTile();
-    if(collision()){
+    if(ghostCollision()){
       player.subtractLife();
       player.moveToStart();
     }
+    pelletCollision();
   }
   
   public void switchStates(){
@@ -113,7 +132,7 @@ public class Game{
     }
   }
   
-  public Boolean collision(){
+  public Boolean ghostCollision(){
     ArrayList<Ghost> ghostList = new ArrayList<Ghost>();
     ghostList.add(Blinky);
     ghostList.add(Inky);
@@ -125,5 +144,13 @@ public class Game{
       }
     }
     return false;
+  }
+  
+  public void pelletCollision(){
+    int tileType = currentMap.tileMap[player.getCurrentTile()[1]][player.getCurrentTile()[0]];
+    if((tileType == 2) || (tileType == 3)){
+      player.pellet(tileType);
+      currentMap.tileMap[player.getCurrentTile()[1]][player.getCurrentTile()[0]] = 1;
+    }
   }
 }

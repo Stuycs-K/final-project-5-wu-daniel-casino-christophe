@@ -31,11 +31,11 @@ public class PacMan{
     return lifeCount;
   }
   
-  public void pellet(Boolean sPellet){
-    if(sPellet){
-      score += 50;
-    } else {
+  public void pellet(int pelletType){
+    if(pelletType == 2){
       score += 10;
+    } else if(pelletType == 3){
+      score += 50;
     }
   }
   
@@ -63,6 +63,19 @@ public class PacMan{
   }
   
   public void showPacMan(){
+    /*
+    if(PacManDirection.equals(new PVector(0,-7))){
+      rotate(270);
+    }
+    if(PacManDirection.equals(new PVector(0,7))){
+      rotate(90);
+    }
+    if(PacManDirection.equals(new PVector(-7,0))){
+      rotate(180);
+    }
+    if(PacManDirection.equals(new PVector(7,0))){
+      rotate(0);
+    }*/
     image(PacManImage, location.x - 14, location.y - 14, size, size);
   }
   

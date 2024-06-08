@@ -1,11 +1,9 @@
-Map currentMap;
 Game game;
 int timer;
 
 void setup(){
   size(812, 899);
-  currentMap = new Map();
-  game = new Game(currentMap.getTileMap());
+  game = new Game();
   timer = 0;
 }
 
