@@ -37,7 +37,7 @@ public class Ghost{
       ghostDirection = new PVector(0,-1);
     } else{
         if (ghostName.equals("Inky")){
-          ghostDirection = new PVector(-1,0);
+          ghostDirection = new PVector(1,0);
         }
         else{
           ghostDirection = new PVector(1,0);
@@ -170,7 +170,7 @@ public class Ghost{
     for (int i=0;i<possibleDirections.size();i++){
       
       if (possibleDirections.get(i).equals("left")){
-        if (gridLocation[0]==0||ghostMap[gridLocation[1]][gridLocation[0]-1]==0){
+        if (gridLocation[0]==1||ghostMap[gridLocation[1]][gridLocation[0]-1]==0){
           possibleDirections.remove(i);
           i--;
         }
@@ -178,20 +178,20 @@ public class Ghost{
       }
       else{
         if (possibleDirections.get(i).equals("right")){
-          if (gridLocation[0]+1>27||ghostMap[gridLocation[1]][gridLocation[0]+1]==0){
+          if (gridLocation[0]+1>=27||ghostMap[gridLocation[1]][gridLocation[0]+1]==0){
             possibleDirections.remove(i);
             i--;
           }
         }
         else{
             if (possibleDirections.get(i).equals("up")){
-          if (gridLocation[1]==0||ghostMap[gridLocation[1]-1][gridLocation[0]]==0){
+          if (gridLocation[1]==1||ghostMap[gridLocation[1]-1][gridLocation[0]]==0){
             possibleDirections.remove(i);
             i--;
           }
         }else{
           if (possibleDirections.get(i).equals("down")){
-          if (gridLocation[1]+1>27||ghostMap[gridLocation[1]+1][gridLocation[0]]==0){
+          if (gridLocation[1]==29||ghostMap[gridLocation[1]+1][gridLocation[0]]==0){
             possibleDirections.remove(i);
             i--;
           }
