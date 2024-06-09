@@ -1,15 +1,12 @@
 Game game;
-int timer;
 
 void setup(){
   size(812, 899);
   game = new Game();
-  timer = 0;
 }
 
 void draw(){
   game.run();
-  timer++;
 }
 
 void keyPressed() {

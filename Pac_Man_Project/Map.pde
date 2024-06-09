@@ -1,4 +1,4 @@
-public class Map {
+public class Map{
   private int rowPixels;
   private int columnPixels;
   private int rowTiles;

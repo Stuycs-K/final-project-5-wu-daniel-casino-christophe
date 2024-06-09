@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 public class Game{
+  int timer;
   private int highScore;
   private int gameOver;
   private int levelWin;
@@ -16,22 +17,24 @@ public class Game{
   private Ghost Clyde;
   
   public Game(){
+    timer = 0;
     highScore = 0;
     currentState = 0;
     currentMap = new Map();
-    PacManMapImage = loadImage("PacManMapVeryFinal.jpg");
+    keyboardInput = new KeyboardBuffer();
+    PacManMapImage = loadImage("closedPacManImageLeft.png");
     player = new PacMan(currentMap.tileMap, 3);
     ghostStates = new String[]{"scatter", "chase"};
-    Blinky = new Ghost("Blinky.jpg", currentMap.tileMap, player, 377,348);
-    Pinky = new Ghost("Pinky.jpg",currentMap.tileMap, player, 377,435);
-    Inky = new Ghost("Inky.jpg",currentMap.tileMap, player, 348,406);
-    Clyde = new Ghost("Clyde.jpg",currentMap.tileMap,player, 406,435);
-    keyboardInput = new KeyboardBuffer();
+    Blinky = new Ghost("Blinky.jpg", currentMap.tileMap, player, 377, 348);
+    Pinky = new Ghost("Pinky.jpg", currentMap.tileMap, player, 377, 435);
+    Inky = new Ghost("Inky.jpg", currentMap.tileMap, player, 348, 406);
+    Clyde = new Ghost("Clyde.jpg", currentMap.tileMap, player, 406, 435);
     player.applyDirection("left");
     player.updateLocation();
   }
   
   public void run(){
+    timer++;
     image(PacManMapImage,0,0);
     for(int i = 0; i < currentMap.getRowTiles(); i++){
       for(int j = 0; j < currentMap.getColumnTiles(); j++){
@@ -74,15 +77,15 @@ public class Game{
     textSize(40);
     text("Score", 32, 323);
     text("" + player.getScore(), 38, 349);
-      
-    player.showPacMan();
+    
     player.updateLocation();
     player.getCurrentTile();
+    showPacMan();
+    pelletCollision();
     if(ghostCollision()){
       player.subtractLife();
       player.moveToStart();
     }
-    pelletCollision();
   }
   
   public void switchStates(){
@@ -151,6 +154,36 @@ public class Game{
     if((tileType == 2) || (tileType == 3)){
       player.pellet(tileType);
       currentMap.tileMap[player.getCurrentTile()[1]][player.getCurrentTile()[0]] = 1;
+    }
+  }
+  
+  public void showPacMan(){
+    if(timer % 3 == 0){
+      if(player.PacManDirection.equals(new PVector(0,-7))){
+        image(player.closedPacManImageUp, player.location.x - 14, player.location.y - 14, player.size, player.size);
+      }
+      if(player.PacManDirection.equals(new PVector(0,7))){
+        image(player.closedPacManImageDown, player.location.x - 14, player.location.y - 14, player.size, player.size);
+      }
+      if(player.PacManDirection.equals(new PVector(-7,0))){
+        image(player.closedPacManImageLeft, player.location.x - 14, player.location.y - 14, player.size, player.size);
+      }
+      if(player.PacManDirection.equals(new PVector(7,0))){
+        image(player.closedPacManImageRight, player.location.x - 14, player.location.y - 14, player.size, player.size);
+      }
+    } else {
+      if(player.PacManDirection.equals(new PVector(0,-7))){
+        image(player.openPacManImageUp, player.location.x - 14, player.location.y - 14, player.size, player.size);
+      }
+      if(player.PacManDirection.equals(new PVector(0,7))){
+        image(player.openPacManImageDown, player.location.x - 14, player.location.y - 14, player.size, player.size);
+      }
+      if(player.PacManDirection.equals(new PVector(-7,0))){
+        image(player.openPacManImageLeft, player.location.x - 14, player.location.y - 14, player.size, player.size);
+      }
+      if(player.PacManDirection.equals(new PVector(7,0))){
+        image(player.openPacManImageRight, player.location.x - 14, player.location.y - 14, player.size, player.size);
+      }
     }
   }
 }
