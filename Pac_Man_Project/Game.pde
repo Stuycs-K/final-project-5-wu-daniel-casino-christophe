@@ -47,20 +47,29 @@ public class Game{
       }
     }
    
-      if (Blinky.outOfBox()){
+     
           Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
-        }
-        
+
      if (Pinky.outOfBox()){
           Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
         }
+     else{
+       Pinky.gotOut();
+     }
       if (Inky.outOfBox()){
           Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
+        }
+        else{
+          Inky.gotOut();
         }
       if (Clyde.outOfBox()){
           Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
         }
-        
+    if (Pinky.outOfBox()&&Clyde.outOfBox()&&Inky.outOfBox()){
+      currentMap.blockPink();
+    }
+    println(Inky.outOfBox());
+    println(Clyde.outOfBox());
     Blinky.applyDirection(Blinky.chooseDirection());
     Pinky.applyDirection(Pinky.chooseDirection());
     Inky.applyDirection(Inky.chooseDirection());
@@ -69,8 +78,6 @@ public class Game{
     Pinky.showGhost();
     Inky.showGhost();
     Clyde.showGhost();
-    println(Arrays.toString(Blinky.getLocation()));
-    println(Blinky.outOfBox()); 
     
     fill(255);
     textSize(40);

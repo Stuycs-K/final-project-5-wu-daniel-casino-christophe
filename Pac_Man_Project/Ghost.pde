@@ -67,14 +67,17 @@ public class Ghost{
   }
   
   public void gotOut(){
-    int[] ghostCurr = getLocation();
-    boolean metTarget = true;
-    for (int i=0;i<boxTarget.length;i++){
-      if (ghostCurr[i]!=boxTarget[i]){
-        metTarget=false;
+    if (outOfBox!=true){
+      int[] ghostCurr = getLocation();
+      boolean metTarget = true;
+      for (int i=0;i<boxTarget.length;i++){
+        if (ghostCurr[i]!=boxTarget[i]){
+          metTarget=false;
+        }
       }
+      outOfBox=metTarget;
     }
-    outOfBox=metTarget;
+    
   }
 
   

@@ -62,4 +62,9 @@ public class Map {
   public int[][] getTileMap(){
     return tileMap;
   }
+  
+  public void blockPink(){
+    tileMap[13][12]=0;
+    tileMap[13][13]=0;
+  }
 }
