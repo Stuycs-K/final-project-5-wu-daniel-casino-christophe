@@ -29,10 +29,10 @@ public class Ghost{
   // change the map parameter to GridSpace  
   public Ghost(String ghostType, int[][] map, PacMan player, int xCoord, int yCoord){
     ghost = loadImage(ghostType);
-    movementSpeed = 5;
+    movementSpeed = 2;
     size = 29;
     ghostName = ghostType.substring(0, ghostType.length()-4);
-    ghostDirection = new PVector(0,1);
+    ghostDirection = new PVector(0,-1);
     
     chaseState=false;
     scaredState=false;
