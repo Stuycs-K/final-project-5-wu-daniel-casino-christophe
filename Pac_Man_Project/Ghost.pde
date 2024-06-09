@@ -41,7 +41,7 @@ public class Ghost{
     eatenState=false;
     scatteredState=true;
     outOfBox=false;
-    boxTarget = new int[]{13,10};
+    boxTarget = new int[]{12,10};
     currentTarget = boxTarget;
     
     location = new PVector(xCoord,yCoord);
@@ -69,13 +69,12 @@ public class Ghost{
   public void gotOut(){
     int[] ghostCurr = getLocation();
     boolean metTarget = true;
-    for (int i=0;i<currentTarget.length;i++){
+    for (int i=0;i<boxTarget.length;i++){
       if (ghostCurr[i]!=boxTarget[i]){
         metTarget=false;
       }
     }
     outOfBox=metTarget;
-    currentTarget=scatterTarget();
   }
 
   

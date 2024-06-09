@@ -46,7 +46,7 @@ public class Game{
         }
       }
     }
-    
+   
       if (Blinky.outOfBox()){
           Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
         }
@@ -61,18 +61,6 @@ public class Game{
           Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
         }
         
-      
-      
-    //}
-    
-    //if (ghostStates[currentState].equals("chase")){
-    //  Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
-    //  Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
-    //  Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
-    //  Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
-    //}
-    
-    
     Blinky.applyDirection(Blinky.chooseDirection());
     Pinky.applyDirection(Pinky.chooseDirection());
     Inky.applyDirection(Inky.chooseDirection());
@@ -81,6 +69,8 @@ public class Game{
     Pinky.showGhost();
     Inky.showGhost();
     Clyde.showGhost();
+    println(Arrays.toString(Blinky.getLocation()));
+    println(Blinky.outOfBox()); 
     
     fill(255);
     textSize(40);
