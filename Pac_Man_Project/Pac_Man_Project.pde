@@ -1,18 +1,23 @@
+import processing.sound.*;
+SoundFile file;
 Game game;
-int timer;
 
 void setup(){
   size(812, 899);
   game = new Game();
-  timer = 0;
+  file = new SoundFile(this, "pacman_beginning.mp3");
+  file.play();
 }
 
 void draw(){
-  game.run();
-  timer++;
+  game.gameDraw();
 }
 
 void keyPressed() {
   //send the number of the key pressed to your KeyboardBuffer object
-  game.keyboardSetter(keyCode, true);
+  if(keyCode == ENTER){
+    game.enterPressed();
+  } else {
+    game.keyboardSetter(keyCode, true);
+  }
 }

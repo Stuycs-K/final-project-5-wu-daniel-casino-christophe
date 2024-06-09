@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 public class Game{
+  int timer;
+  boolean startScreenActive;
+  boolean endScreenActive;
   private int highScore;
   private int gameOver;
   private int levelWin;
@@ -16,73 +19,112 @@ public class Game{
   private Ghost Clyde;
   
   public Game(){
+    initialize();
+  }
+  
+  public void initialize(){
+    timer = 0;
     highScore = 0;
     currentState = 0;
+    startScreenActive = true;
+    endScreenActive = false;
     currentMap = new Map();
+    keyboardInput = new KeyboardBuffer();
     PacManMapImage = loadImage("PacManMapVeryFinal.jpg");
     player = new PacMan(currentMap.tileMap, 3);
     ghostStates = new String[]{"scatter", "chase"};
-    Blinky = new Ghost("Blinky.jpg", currentMap.tileMap, player, 377,348);
-    Pinky = new Ghost("Pinky.jpg",currentMap.tileMap, player, 377,435);
-    Inky = new Ghost("Inky.jpg",currentMap.tileMap, player, 348,406);
-    Clyde = new Ghost("Clyde.jpg",currentMap.tileMap,player, 406,435);
-    keyboardInput = new KeyboardBuffer();
+    Blinky = new Ghost("Blinky.jpg", currentMap.tileMap, player, 377, 348);
+    Pinky = new Ghost("Pinky.jpg", currentMap.tileMap, player, 377, 435);
+    Inky = new Ghost("Inky.jpg", currentMap.tileMap, player, 348, 406);
+    Clyde = new Ghost("Clyde.jpg", currentMap.tileMap, player, 406, 435);
     player.applyDirection("left");
     player.updateLocation();
   }
   
+  public void gameDraw(){
+    if(startScreenActive){
+      drawStartScreen();
+    } else if (endScreenActive){
+      drawEndScreen();
+    } else {
+      run();
+    }
+  }
+  
+  public void enterPressed(){
+    startScreenActive = false;
+    if(endScreenActive){
+      initialize();
+    }
+  }
+  
+  public void drawStartScreen(){
+    background(0);
+  }
+  
   public void run(){
-    image(PacManMapImage,0,0);
-    for(int i = 0; i < currentMap.getRowTiles(); i++){
-      for(int j = 0; j < currentMap.getColumnTiles(); j++){
-        if(currentMap.tileMap[j][i] == 2){
-          fill(255, 255, 0);
-          circle(i * 29 + 14, j * 29 + 14, 10);
-        }
-        if(currentMap.tileMap[j][i] == 3){
-          fill(255, 255, 0);
-          circle(i * 29 + 14, j * 29 + 14, 20);
+    if(player.getLives() != 0){
+      timer++;
+      image(PacManMapImage,0,0);
+      for(int i = 0; i < currentMap.getRowTiles(); i++){
+        for(int j = 0; j < currentMap.getColumnTiles(); j++){
+          if(currentMap.tileMap[j][i] == 2){
+            fill(255, 255, 0);
+            circle(i * 29 + 14, j * 29 + 14, 10);
+          }
+          if(currentMap.tileMap[j][i] == 3){
+            fill(255, 255, 0);
+            circle(i * 29 + 14, j * 29 + 14, 20);
+          }
         }
       }
-    }
-    if (ghostStates[currentState].equals("scatter")){
-      Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
-      Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
-      Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
-      Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
       
-    }
-    
-    if (ghostStates[currentState].equals("chase")){
-      Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
-      Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
-      Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
-      Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
-    }
-    
-    
-    Blinky.applyDirection(Blinky.chooseDirection());
-    Pinky.applyDirection(Pinky.chooseDirection());
-    Inky.applyDirection(Inky.chooseDirection());
-    Clyde.applyDirection(Clyde.chooseDirection());
-    Blinky.showGhost();
-    Pinky.showGhost();
-    Inky.showGhost();
-    Clyde.showGhost();
-    
-    fill(255);
-    textSize(40);
-    text("Score", 32, 323);
-    text("" + player.getScore(), 38, 349);
+      if (ghostStates[currentState].equals("scatter")){
+        Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+        Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+        Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
+        Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
+        
+      }
       
-    player.showPacMan();
-    player.updateLocation();
-    player.getCurrentTile();
-    if(ghostCollision()){
-      player.subtractLife();
-      player.moveToStart();
+      if (ghostStates[currentState].equals("chase")){
+        Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+        Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+        Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
+        Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
+      }
+      
+      
+      Blinky.applyDirection(Blinky.chooseDirection());
+      Pinky.applyDirection(Pinky.chooseDirection());
+      Inky.applyDirection(Inky.chooseDirection());
+      Clyde.applyDirection(Clyde.chooseDirection());
+      Blinky.showGhost();
+      Pinky.showGhost();
+      Inky.showGhost();
+      Clyde.showGhost();
+      
+      fill(209, 190, 168);
+      textSize(40);
+      text("Score", 34, 323);
+      text("" + player.getScore(), 38, 349);
+      
+      fill(209, 190, 168);
+      textSize(40);
+      text("Lives", 812 - 100, 323);
+      text("" + player.getLives(), 812 - 108, 349);
+      
+      player.updateLocation();
+      player.getCurrentTile();
+      showPacMan();
+      pelletCollision();
+      if(ghostCollision()){
+        player.subtractLife();
+        player.moveToStart();
+      }
+    } else {
+      endScreenActive = true;
     }
-    pelletCollision();
   }
   
   public void switchStates(){
@@ -152,5 +194,39 @@ public class Game{
       player.pellet(tileType);
       currentMap.tileMap[player.getCurrentTile()[1]][player.getCurrentTile()[0]] = 1;
     }
+  }
+  
+  public void showPacMan(){
+    if(timer % 3 == 0){
+      if(player.PacManDirection.equals(new PVector(0,-7))){
+        image(player.closedPacManImageUp, player.location.x - 14, player.location.y - 14, player.size, player.size);
+      }
+      if(player.PacManDirection.equals(new PVector(0,7))){
+        image(player.closedPacManImageDown, player.location.x - 14, player.location.y - 14, player.size, player.size);
+      }
+      if(player.PacManDirection.equals(new PVector(-7,0))){
+        image(player.closedPacManImageLeft, player.location.x - 14, player.location.y - 14, player.size, player.size);
+      }
+      if(player.PacManDirection.equals(new PVector(7,0))){
+        image(player.closedPacManImageRight, player.location.x - 14, player.location.y - 14, player.size, player.size);
+      }
+    } else {
+      if(player.PacManDirection.equals(new PVector(0,-7))){
+        image(player.openPacManImageUp, player.location.x - 14, player.location.y - 14, player.size, player.size);
+      }
+      if(player.PacManDirection.equals(new PVector(0,7))){
+        image(player.openPacManImageDown, player.location.x - 14, player.location.y - 14, player.size, player.size);
+      }
+      if(player.PacManDirection.equals(new PVector(-7,0))){
+        image(player.openPacManImageLeft, player.location.x - 14, player.location.y - 14, player.size, player.size);
+      }
+      if(player.PacManDirection.equals(new PVector(7,0))){
+        image(player.openPacManImageRight, player.location.x - 14, player.location.y - 14, player.size, player.size);
+      }
+    }
+  }
+  
+  public void drawEndScreen(){
+    image(PacManMapImage,0,0);
   }
 }

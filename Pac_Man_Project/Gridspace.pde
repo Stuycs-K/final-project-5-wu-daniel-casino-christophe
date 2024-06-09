@@ -1,4 +1,4 @@
-public class Gridspace {
+public class Gridspace{
   private int x;
   private int y;
   private int[][] tileMap;

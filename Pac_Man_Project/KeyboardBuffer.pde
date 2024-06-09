@@ -1,5 +1,5 @@
 /**************KeyboardBuffer TAB************/
-public class KeyboardBuffer {
+public class KeyboardBuffer{
   //make a list of actions you want to have in your program
   //As a simple example this is just two instance varibles, but a list/array would work well for large quantities.
   boolean P1_UP;

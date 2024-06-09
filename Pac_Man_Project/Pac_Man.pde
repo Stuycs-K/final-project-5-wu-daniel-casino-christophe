@@ -9,10 +9,17 @@ public class PacMan{
   Boolean alive;
   Boolean addedLife;
   Boolean activeState;
+  PImage closedPacManImageUp;
+  PImage closedPacManImageDown;
+  PImage closedPacManImageLeft;
+  PImage closedPacManImageRight;
+  PImage openPacManImageUp;
+  PImage openPacManImageDown;
+  PImage openPacManImageLeft;
+  PImage openPacManImageRight;
+  PVector location;
   private int[][] PacManMap;
-  private PVector location;
   private PVector PacManDirection;
-  private PImage PacManImage;
   
   public PacMan(int[][] map, int lives){
     keyboardInput = new KeyboardBuffer();
@@ -22,7 +29,14 @@ public class PacMan{
     size = 29;
     addedLife = false;
     PacManDirection = new PVector(0,1);
-    PacManImage = loadImage("ClosedMouthFinal.jpg");
+    closedPacManImageUp = loadImage("closedPacManImageUp.png");
+    closedPacManImageDown = loadImage("closedPacManImageDown.png");
+    closedPacManImageLeft = loadImage("closedPacManImageLeft.png");
+    closedPacManImageRight = loadImage("closedPacManImageRight.png");
+    openPacManImageUp = loadImage("openPacManImageUp.png");
+    openPacManImageDown = loadImage("openPacManImageDown.png");
+    openPacManImageLeft = loadImage("openPacManImageLeft.png");
+    openPacManImageRight = loadImage("openPacManImageRight.png");
     PacManMap=map;
     moveToStart();
   }
@@ -31,16 +45,16 @@ public class PacMan{
     return lifeCount;
   }
   
+  public int getScore(){
+    return score;
+  }
+  
   public void pellet(int pelletType){
     if(pelletType == 2){
       score += 10;
     } else if(pelletType == 3){
       score += 50;
     }
-  }
-  
-  public int getScore(){
-    return score;
   }
   
   public void addLife(){
@@ -60,23 +74,6 @@ public class PacMan{
   
   public String getPacManDirection(){
     return keyboardInput.getLastDirection();
-  }
-  
-  public void showPacMan(){
-    /*
-    if(PacManDirection.equals(new PVector(0,-7))){
-      rotate(270);
-    }
-    if(PacManDirection.equals(new PVector(0,7))){
-      rotate(90);
-    }
-    if(PacManDirection.equals(new PVector(-7,0))){
-      rotate(180);
-    }
-    if(PacManDirection.equals(new PVector(7,0))){
-      rotate(0);
-    }*/
-    image(PacManImage, location.x - 14, location.y - 14, size, size);
   }
   
   public int[] getCurrentTile(){
@@ -128,7 +125,6 @@ public class PacMan{
         PacManDirection = new PVector(7,0);
       }
     }
-    showPacMan();
   }
   
   public void moveToStart(){
