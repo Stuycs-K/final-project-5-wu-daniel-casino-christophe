@@ -12,6 +12,7 @@ public class Ghost{
   private PImage ghost;
   
   //States of Ghosts
+  private boolean outOfBox;
   private boolean scaredState;
   private boolean scatteredState;
   private boolean chaseState;
@@ -38,7 +39,9 @@ public class Ghost{
     scaredState=false;
     eatenState=false;
     scatteredState=true;
-    currentTarget = scatterTarget();
+    outOfBox=false;
+    currentTarget = new int[]{13,11};
+    
     location = new PVector(xCoord,yCoord);
     xvelocity = new PVector(movementSpeed,0);
     yvelocity = new PVector(0,movementSpeed);
@@ -56,10 +59,26 @@ public class Ghost{
   public String getName(){
     return ghostName;
   }
+  
+  public boolean outOfBox(){
+   return outOfBox; 
+  }
+  
+  public void gotOut(){
+    int[] ghostCurr = getLocation();
+    boolean metTarget = true;
+    for (int i=0;i<currentTarget.length;i++){
+      if (ghostCurr[i]!=currentTarget[i]){
+        metTarget=false;
+      }
+    }
+    outOfBox=metTarget;
+    currentTarget=scatterTarget();
+  }
 
   
   public int[] getLocation(){
-    int[] ghostLocation = new int[]{(int)(location.x/29),(int)(location.y/29)};
+    int[] ghostLocation = new int[]{(int)(location.x/28),(int)(location.y/31)};
     return ghostLocation;
   }
   
