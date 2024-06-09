@@ -31,7 +31,7 @@ public class Ghost{
   // change the map parameter to GridSpace  
   public Ghost(String ghostType, int[][] map, PacMan player, int xCoord, int yCoord){
     ghost = loadImage(ghostType);
-    movementSpeed = 2;
+    movementSpeed = 1;
     size = 29;
     ghostName = ghostType.substring(0, ghostType.length()-4);
     ghostDirection = new PVector(0,-1);
@@ -69,11 +69,13 @@ public class Ghost{
   public void gotOut(){
     if (outOfBox!=true){
       int[] ghostCurr = getLocation();
-      boolean metTarget = true;
-      for (int i=0;i<boxTarget.length;i++){
-        if (ghostCurr[i]!=boxTarget[i]){
-          metTarget=false;
-        }
+      
+      boolean metTarget;
+      if (ghostCurr[0]==boxTarget[0]&&ghostCurr[1]==boxTarget[1]){
+        metTarget=true;
+      }
+      else{
+        metTarget=false;
       }
       outOfBox=metTarget;
     }
