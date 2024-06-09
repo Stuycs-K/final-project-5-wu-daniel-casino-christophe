@@ -16,6 +16,7 @@ public class Ghost{
   private boolean scatteredState;
   private boolean chaseState;
   private boolean eatenState;
+  private boolean outBox;
   
   //map for ghosts
   private int[][] ghostMap;
@@ -32,13 +33,24 @@ public class Ghost{
     movementSpeed = 2;
     size = 29;
     ghostName = ghostType.substring(0, ghostType.length()-4);
-    ghostDirection = new PVector(0,-1);
+    if (ghostName.equals("Blinky")||ghostName.equals("Pinky")){
+      ghostDirection = new PVector(0,-1);
+    } else{
+        if (ghostName.equals("Inky")){
+          ghostDirection = new PVector(-1,0);
+        }
+        else{
+          ghostDirection = new PVector(1,0);
+        }
+    }
     
     chaseState=false;
     scaredState=false;
     eatenState=false;
+    outBox=false;
     scatteredState=true;
-    currentTarget = scatterTarget();
+    
+    currentTarget = new int[]{13,11};
     location = new PVector(xCoord,yCoord);
     xvelocity = new PVector(movementSpeed,0);
     yvelocity = new PVector(0,movementSpeed);
@@ -48,6 +60,9 @@ public class Ghost{
     currentUser=player;
   }
   
+  public int[] getTarget(){
+    return currentTarget;
+  }
   public void showGhost(){
     image(ghost, location.x, location.y, size, size);
   }
@@ -57,6 +72,16 @@ public class Ghost{
     return ghostName;
   }
 
+  public boolean outOfBox(){
+    return outBox;
+  }
+  
+  public void escapeBox(){
+    int[] curr = getLocation();
+    if (curr[0]==currentTarget[0]&&curr[1]==currentTarget[1]){
+      outBox=true;
+    }
+  }
   
   public int[] getLocation(){
     int[] ghostLocation = new int[]{(int)(location.x/29),(int)(location.y/29)};
@@ -176,7 +201,6 @@ public class Ghost{
       }
 
     }
-    println(possibleDirections.size());
      int lowestDistance = findDistanceFromTarget(possibleDirections.get(0),gridLocation);
      String chosen = possibleDirections.get(0);
      for (int i=0;i<possibleDirections.size();i++){

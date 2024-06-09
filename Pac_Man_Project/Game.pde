@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 public class Game{
   int timer;
   boolean startScreenActive;
@@ -79,26 +80,29 @@ public class Game{
         }
       }
       
-      if (ghostStates[currentState].equals("scatter")){
-        Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
-        Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+      Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+      Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+      
+      if (Inky.outOfBox()){
         Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
+      } else{
+        Inky.escapeBox();
+      }
+      
+      println(Arrays.toString(Clyde.getLocation()));
+      if (Clyde.outOfBox()){
         Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
+      } else{
+        Clyde.escapeBox();
+      }
+      
         
-      }
-      
-      if (ghostStates[currentState].equals("chase")){
-        Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
-        Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
-        Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
-        Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
-      }
-      
-      
+   
       Blinky.applyDirection(Blinky.chooseDirection());
       Pinky.applyDirection(Pinky.chooseDirection());
       Inky.applyDirection(Inky.chooseDirection());
       Clyde.applyDirection(Clyde.chooseDirection());
+      
       Blinky.showGhost();
       Pinky.showGhost();
       Inky.showGhost();

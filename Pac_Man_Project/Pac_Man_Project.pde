@@ -1,16 +1,16 @@
-import processing.sound.*;
-SoundFile file;
+//import processing.sound.*;
+//SoundFile file;
 Game game;
 
 void setup(){
   size(812, 899);
   game = new Game();
-  file = new SoundFile(this, "pacman_beginning.mp3");
-  file.play();
+  //file = new SoundFile(this, "pacman_beginning.mp3");
+  //file.play();
 }
 
 void draw(){
-  game.gameDraw();
+  game.run();
 }
 
 void keyPressed() {
