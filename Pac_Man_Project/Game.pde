@@ -49,7 +49,8 @@ public class Game {
         }
       }
     }
-
+    println(Arrays.toString(Clyde.getLocation()));
+    println(Clyde.outOfBox());
     Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
     if (Pinky.outOfBox()) {
       Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
@@ -67,7 +68,7 @@ public class Game {
     if (Pinky.outOfBox() && Clyde.outOfBox() && Inky.outOfBox()) {
       currentMap.blockPink();
     }
-    //println(Inky.outOfBox());
+    
 
     Blinky.applyDirection(Blinky.chooseDirection());
     Pinky.applyDirection(Pinky.chooseDirection());
