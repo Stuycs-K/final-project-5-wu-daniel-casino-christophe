@@ -22,7 +22,7 @@ public class Game{
     currentState = 0;
     currentMap = new Map();
     keyboardInput = new KeyboardBuffer();
-    PacManMapImage = loadImage("closedPacManImageLeft.png");
+    PacManMapImage = loadImage("PacManMapVeryFinal.jpg");
     player = new PacMan(currentMap.tileMap, 3);
     ghostStates = new String[]{"scatter", "chase"};
     Blinky = new Ghost("Blinky.jpg", currentMap.tileMap, player, 377, 348);
@@ -49,6 +49,7 @@ public class Game{
           }
         }
       }
+      
       if (ghostStates[currentState].equals("scatter")){
         Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
         Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
@@ -81,8 +82,8 @@ public class Game{
       
       fill(209, 190, 168);
       textSize(40);
-      text("Lives", 812 - 34, 323);
-      text("" + player.getLives(), 812 - 38, 349);
+      text("Lives", 812 - 100, 323);
+      text("" + player.getLives(), 812 - 108, 349);
       
       player.updateLocation();
       player.getCurrentTile();
