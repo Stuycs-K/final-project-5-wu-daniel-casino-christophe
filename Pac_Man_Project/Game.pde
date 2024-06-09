@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 public class Game{
   int timer;
+  boolean startScreenActive;
+  boolean endScreenActive;
   private int highScore;
   private int gameOver;
   private int levelWin;
@@ -17,9 +19,15 @@ public class Game{
   private Ghost Clyde;
   
   public Game(){
+    initialize();
+  }
+  
+  public void initialize(){
     timer = 0;
     highScore = 0;
     currentState = 0;
+    startScreenActive = true;
+    endScreenActive = false;
     currentMap = new Map();
     keyboardInput = new KeyboardBuffer();
     PacManMapImage = loadImage("PacManMapVeryFinal.jpg");
@@ -31,6 +39,27 @@ public class Game{
     Clyde = new Ghost("Clyde.jpg", currentMap.tileMap, player, 406, 435);
     player.applyDirection("left");
     player.updateLocation();
+  }
+  
+  public void gameDraw(){
+    if(startScreenActive){
+      drawStartScreen();
+    } else if (endScreenActive){
+      drawEndScreen();
+    } else {
+      run();
+    }
+  }
+  
+  public void enterPressed(){
+    startScreenActive = false;
+    if(endScreenActive){
+      initialize();
+    }
+  }
+  
+  public void drawStartScreen(){
+    background(0);
   }
   
   public void run(){
@@ -94,8 +123,7 @@ public class Game{
         player.moveToStart();
       }
     } else {
-      image(PacManMapImage,0,0);
-      
+      endScreenActive = true;
     }
   }
   
@@ -196,5 +224,9 @@ public class Game{
         image(player.openPacManImageRight, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
     }
+  }
+  
+  public void drawEndScreen(){
+    image(PacManMapImage,0,0);
   }
 }
