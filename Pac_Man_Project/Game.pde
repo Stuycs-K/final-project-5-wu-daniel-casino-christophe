@@ -104,15 +104,15 @@ public class Game{
       Inky.showGhost();
       Clyde.showGhost();
       
-      fill(209, 190, 168);
+      fill(226, 223, 210);
       textSize(40);
-      text("Score", 34, 323);
-      text("" + player.getScore(), 38, 349);
+      text("Score", 34, 325);
+      text("" + player.getScore(), 38, 358);
       
-      fill(209, 190, 168);
+      fill(226, 223, 210);
       textSize(40);
-      text("Lives", 812 - 100, 323);
-      text("" + player.getLives(), 812 - 108, 349);
+      text("Lives", 812 - 100, 325);
+      text("" + player.getLives(), 812 - 108, 358);
       
       player.updateLocation();
       player.getCurrentTile();
