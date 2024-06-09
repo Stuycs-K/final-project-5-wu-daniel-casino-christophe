@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 public class Game{
   private int highScore;
   private int gameOver;
@@ -24,8 +25,8 @@ public class Game{
     ghostStates = new String[]{"scatter", "chase"};
     Blinky = new Ghost("Blinky.jpg", currentMap.tileMap, player, 377,348);
     Pinky = new Ghost("Pinky.jpg",currentMap.tileMap, player, 377,435);
-    Inky = new Ghost("Inky.jpg",currentMap.tileMap, player, 348,406);
-    Clyde = new Ghost("Clyde.jpg",currentMap.tileMap,player, 406,435);
+    Inky = new Ghost("Inky.jpg",currentMap.tileMap, player, 319,406);
+    Clyde = new Ghost("Clyde.jpg",currentMap.tileMap,player, 435,406);
     keyboardInput = new KeyboardBuffer();
     player.applyDirection("left");
     player.updateLocation();
@@ -45,38 +46,31 @@ public class Game{
         }
       }
     }
-    println(Blinky.outOfBox());
-    //if (ghostStates[currentState].equals("scatter")){
+    
       if (Blinky.outOfBox()){
           Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
         }
-      else{
-        Blinky.gotOut();
-      }
         
      if (Pinky.outOfBox()){
           Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
         }
-       else{
-        Pinky.gotOut();
-      }
       if (Inky.outOfBox()){
           Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
         }
-       else{
-        Inky.gotOut();
-      }
       if (Clyde.outOfBox()){
           Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
         }
-       else{
-        Clyde.gotOut();
-      }
+        
       
       
     //}
     
-
+    //if (ghostStates[currentState].equals("chase")){
+    //  Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+    //  Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+    //  Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
+    //  Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
+    //}
     
     
     Blinky.applyDirection(Blinky.chooseDirection());

@@ -23,6 +23,7 @@ public class Ghost{
   
   //targeting system for ghost
   private int[] currentTarget;
+  private int[] boxTarget;
 
   //Pacman for reference;
   PacMan currentUser;
@@ -30,17 +31,18 @@ public class Ghost{
   // change the map parameter to GridSpace  
   public Ghost(String ghostType, int[][] map, PacMan player, int xCoord, int yCoord){
     ghost = loadImage(ghostType);
-    movementSpeed = 5;
+    movementSpeed = 2;
     size = 29;
     ghostName = ghostType.substring(0, ghostType.length()-4);
-    ghostDirection = new PVector(0,1);
+    ghostDirection = new PVector(0,-1);
     
     chaseState=false;
     scaredState=false;
     eatenState=false;
     scatteredState=true;
     outOfBox=false;
-    currentTarget = new int[]{13,11};
+    boxTarget = new int[]{13,10};
+    currentTarget = boxTarget;
     
     location = new PVector(xCoord,yCoord);
     xvelocity = new PVector(movementSpeed,0);
@@ -68,7 +70,7 @@ public class Ghost{
     int[] ghostCurr = getLocation();
     boolean metTarget = true;
     for (int i=0;i<currentTarget.length;i++){
-      if (ghostCurr[i]!=currentTarget[i]){
+      if (ghostCurr[i]!=boxTarget[i]){
         metTarget=false;
       }
     }
@@ -195,7 +197,6 @@ public class Ghost{
       }
 
     }
-    println(possibleDirections.size());
      int lowestDistance = findDistanceFromTarget(possibleDirections.get(0),gridLocation);
      String chosen = possibleDirections.get(0);
      for (int i=0;i<possibleDirections.size();i++){
