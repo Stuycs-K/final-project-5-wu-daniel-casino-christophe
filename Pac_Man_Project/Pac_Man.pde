@@ -9,7 +9,6 @@ public class PacMan{
   Boolean alive;
   Boolean addedLife;
   Boolean activeState;
-  PVector location;
   PImage closedPacManImageUp;
   PImage closedPacManImageDown;
   PImage closedPacManImageLeft;
@@ -18,6 +17,7 @@ public class PacMan{
   PImage openPacManImageDown;
   PImage openPacManImageLeft;
   PImage openPacManImageRight;
+  PVector location;
   private int[][] PacManMap;
   private PVector PacManDirection;
   

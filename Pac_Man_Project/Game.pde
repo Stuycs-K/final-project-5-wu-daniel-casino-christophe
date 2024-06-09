@@ -34,57 +34,67 @@ public class Game{
   }
   
   public void run(){
-    timer++;
-    image(PacManMapImage,0,0);
-    for(int i = 0; i < currentMap.getRowTiles(); i++){
-      for(int j = 0; j < currentMap.getColumnTiles(); j++){
-        if(currentMap.tileMap[j][i] == 2){
-          fill(255, 255, 0);
-          circle(i * 29 + 14, j * 29 + 14, 10);
-        }
-        if(currentMap.tileMap[j][i] == 3){
-          fill(255, 255, 0);
-          circle(i * 29 + 14, j * 29 + 14, 20);
+    if(player.getLives() != 0){
+      timer++;
+      image(PacManMapImage,0,0);
+      for(int i = 0; i < currentMap.getRowTiles(); i++){
+        for(int j = 0; j < currentMap.getColumnTiles(); j++){
+          if(currentMap.tileMap[j][i] == 2){
+            fill(255, 255, 0);
+            circle(i * 29 + 14, j * 29 + 14, 10);
+          }
+          if(currentMap.tileMap[j][i] == 3){
+            fill(255, 255, 0);
+            circle(i * 29 + 14, j * 29 + 14, 20);
+          }
         }
       }
-    }
-    if (ghostStates[currentState].equals("scatter")){
-      Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
-      Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
-      Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
-      Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
+      if (ghostStates[currentState].equals("scatter")){
+        Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+        Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+        Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
+        Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
+        
+      }
       
-    }
-    
-    if (ghostStates[currentState].equals("chase")){
-      Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
-      Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
-      Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
-      Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
-    }
-    
-    
-    Blinky.applyDirection(Blinky.chooseDirection());
-    Pinky.applyDirection(Pinky.chooseDirection());
-    Inky.applyDirection(Inky.chooseDirection());
-    Clyde.applyDirection(Clyde.chooseDirection());
-    Blinky.showGhost();
-    Pinky.showGhost();
-    Inky.showGhost();
-    Clyde.showGhost();
-    
-    fill(255);
-    textSize(40);
-    text("Score", 32, 323);
-    text("" + player.getScore(), 38, 349);
-    
-    player.updateLocation();
-    player.getCurrentTile();
-    showPacMan();
-    pelletCollision();
-    if(ghostCollision()){
-      player.subtractLife();
-      player.moveToStart();
+      if (ghostStates[currentState].equals("chase")){
+        Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+        Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+        Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
+        Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
+      }
+      
+      
+      Blinky.applyDirection(Blinky.chooseDirection());
+      Pinky.applyDirection(Pinky.chooseDirection());
+      Inky.applyDirection(Inky.chooseDirection());
+      Clyde.applyDirection(Clyde.chooseDirection());
+      Blinky.showGhost();
+      Pinky.showGhost();
+      Inky.showGhost();
+      Clyde.showGhost();
+      
+      fill(209, 190, 168);
+      textSize(40);
+      text("Score", 34, 323);
+      text("" + player.getScore(), 38, 349);
+      
+      fill(209, 190, 168);
+      textSize(40);
+      text("Lives", 812 - 34, 323);
+      text("" + player.getLives(), 812 - 38, 349);
+      
+      player.updateLocation();
+      player.getCurrentTile();
+      showPacMan();
+      pelletCollision();
+      if(ghostCollision()){
+        player.subtractLife();
+        player.moveToStart();
+      }
+    } else {
+      image(PacManMapImage,0,0);
+      
     }
   }
   
