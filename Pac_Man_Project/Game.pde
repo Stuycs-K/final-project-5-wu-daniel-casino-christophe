@@ -5,6 +5,7 @@ public class Game{
   int timer;
   boolean startScreenActive;
   boolean endScreenActive;
+  boolean allPelletsEaten;
   private int score;
   private int scoreDiff;
   private int highScore;
@@ -13,9 +14,9 @@ public class Game{
   private int levelDifficulty;
   private int superTimer;
   private int currentState;
+  private int ghostsEaten;
   private String[] ghostStates;
   private PImage PacManMapImage;
-  private int ghostsEaten;
   private Map currentMap;
   private KeyboardBuffer keyboardInput;
   private PacMan player;
@@ -32,8 +33,9 @@ public class Game{
     superTimer = 0;
     timer = 0;
     highScore = 0;
+    scoreDiff = 0;
     currentState = 0;
-    ghostsEaten=0;
+    ghostsEaten = 0;
     startScreenActive = true;
     endScreenActive = false;
     currentMap = new Map();
@@ -41,7 +43,6 @@ public class Game{
     PacManMapImage = loadImage("PacManMapVeryFinal.jpg");
     player = new PacMan(currentMap.tileMap, 3);
     score = player.getScore();
-    scoreDiff=0;
     ghostStates = new String[]{"scatter", "chase"};
     Blinky = new Ghost("Blinky.png", currentMap.tileMap, player, 377, 348);
     Pinky = new Ghost("Pinky.png", currentMap.tileMap, player, 377, 435);
@@ -72,15 +73,44 @@ public class Game{
     if(player.getLives() != 0){
       timer++;
       image(PacManMapImage,0,0);
+      allPelletsEaten = true;
       for(int i = 0; i < currentMap.getRowTiles(); i++){
         for(int j = 0; j < currentMap.getColumnTiles(); j++){
           if(currentMap.tileMap[j][i] == 2){
             fill(255, 255, 0);
             circle(i * 29 + 14, j * 29 + 14, 10);
+            allPelletsEaten = false;
           }
           if(currentMap.tileMap[j][i] == 3){
             fill(255, 255, 0);
             circle(i * 29 + 14, j * 29 + 14, 20);
+            allPelletsEaten = false;
+          }
+        }
+      }
+      
+      if(allPelletsEaten){
+        allPelletsEaten = false;
+        timer = 0;
+        ghostStates = new String[]{"scatter", "chase"};
+        Blinky = new Ghost("Blinky.png", currentMap.tileMap, player, 377, 348);
+        Pinky = new Ghost("Pinky.png", currentMap.tileMap, player, 377, 435);
+        Inky = new Ghost("Inky.png", currentMap.tileMap, player, 362, 435);
+        Clyde = new Ghost("Clyde.png", currentMap.tileMap, player, 406, 435);
+        player.applyDirection("left");
+        player.updateLocation();
+        for(int i = 0; i < currentMap.getRowTiles(); i++){
+          for(int j = 0; j < currentMap.getColumnTiles(); j++){
+            if(currentMap.tileMap[j][i] == 2){
+              fill(255, 255, 0);
+              circle(i * 29 + 14, j * 29 + 14, 10);
+              allPelletsEaten = false;
+            }
+            if(currentMap.tileMap[j][i] == 3){
+              fill(255, 255, 0);
+              circle(i * 29 + 14, j * 29 + 14, 20);
+              allPelletsEaten = false;
+            }
           }
         }
       }
@@ -172,6 +202,7 @@ public class Game{
         
         player.updateLocation();
         player.getCurrentTile();
+        player.addLife();
         showPacMan();
         pelletCollision();
         if(ghostCollision()){
