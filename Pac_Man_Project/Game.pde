@@ -60,13 +60,6 @@ public class Game{
     }
   }
   
-  public void drawStartScreen(){
-    background(0);
-    fill(229, 204, 201);
-    textSize(50);
-    text("Press ENTER to Start Game", 130, 435);
-  }
-  
   public void run(){
     if(player.getLives() != 0){
       timer++;
@@ -239,6 +232,16 @@ public class Game{
         image(player.openPacManImageRight, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
     }
+  }
+  
+  public void drawStartScreen(){
+    background(1);
+    fill(279, 2, 2);
+    textSize(50);
+    text("Welcome to Pac-Man", 170, 300);
+    fill(229, 204, 201);
+    textSize(50);
+    text("Press ENTER to Start Game", 130, 600);
   }
   
   public void drawEndScreen(){
