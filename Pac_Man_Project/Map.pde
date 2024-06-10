@@ -43,7 +43,7 @@ public class Map{
                            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}};
   }
   
-  public int getRowPixles(){
+  public int getRowPixels(){
     return rowPixels;
   }
   
