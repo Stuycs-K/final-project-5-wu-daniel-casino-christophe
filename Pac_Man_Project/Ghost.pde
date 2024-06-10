@@ -23,6 +23,7 @@ public class Ghost{
   
   //targeting system for ghost
   private int[] currentTarget;
+  private int[] randomTarget;
 
   //Pacman for reference;
   PacMan currentUser;
@@ -94,6 +95,20 @@ public class Ghost{
     }
   }
   
+  public String getState(){
+    if (scatteredState){
+      return "scatter";
+    }
+    if (chaseState){
+      return "chase";
+    }
+    if (scaredState){
+      return "scared";
+    }
+    
+    return "eaten";
+    
+  }
   public int[] getLocation(){
     int[] ghostLocation = new int[]{(int)(location.x/29),(int)(location.y/29)};
     return ghostLocation;
@@ -106,6 +121,9 @@ public class Ghost{
   public void adjustState(String state, int[] BlinkyLocation){
     removeCurrentState();
     if (state.equals("scared")){
+      ghost = loadImage("Scared.png");
+      scaredTarget();
+      currentTarget=randomTarget;
       scaredState=true;
     }
     if (state.equals("scatter")){
@@ -211,7 +229,6 @@ public class Ghost{
         }
       }
       
-      println(possibleDirections.size());
     }
      int lowestDistance = findDistanceFromTarget(possibleDirections.get(0),gridLocation);
      String chosen = possibleDirections.get(0);
@@ -241,9 +258,13 @@ public class Ghost{
      return (int)(Math.sqrt(Math.pow(currentLocation[0]-currentTarget[0],2)+Math.pow(currentLocation[1]+1-currentTarget[1],2)));
   }
 
-  //states of movement
-  
-  public int[] scatterTarget(){
+  //targets for movement
+    public void scaredTarget(){
+      int[] scaredRandom = new int[]{(int)(Math.random()*28),(int)(Math.random()*31)};
+      randomTarget=scaredRandom;
+    }
+    
+    public int[] scatterTarget(){
     if (ghostName.equals("Pinky")){
       int[] target = new int[]{0,0};
       return target;

@@ -80,7 +80,7 @@ public class Game{
         }
       }
       
-      Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+      Blinky.adjustState("scared", Blinky.getLocation());
       Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
       
       if (Inky.outOfBox()){
