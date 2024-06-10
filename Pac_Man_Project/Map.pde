@@ -64,11 +64,12 @@ public class Map{
   }
   
   public void pinkBlock(){
-    if(tileMap[12][13] == 4){
-      tileMap[12][13] = 0;
-    }
-    if(tileMap[12][14] == 4){
-      tileMap[12][14] = 0;
-    }
+    tileMap[12][14]=0;
+    tileMap[12][13]=0;
+  }
+  
+  public void pinkOpen(){
+    tileMap[12][14]=4;
+    tileMap[12][13]=4;
   }
 }

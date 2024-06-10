@@ -98,20 +98,32 @@ public class Game{
           Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
           Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
         } else{
-          if (!(Blinky.getState().equals("eaten")))
-          Blinky.adjustState("scared",Blinky.getLocation());
+          if (!(Blinky.getState().equals("eaten"))){
+            Blinky.adjustState("scared",Blinky.getLocation());
+          } else{
+            Blinky.adjustState("eaten", Blinky.getLocation());
+          }
+            
           
-          if (!(Pinky.getState().equals("eaten")))
-          Pinky.adjustState("scared", Blinky.getLocation());
-        }
+          if (!(Pinky.getState().equals("eaten"))){
+            Pinky.adjustState("scared", Blinky.getLocation());
+          }else{
+            Pinky.adjustState("eaten", Blinky.getLocation());
+          }
+            
+          }
         
         
         if (Inky.outOfBox()){
           if (superTimer==0){
             Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
           }else{
-            if (!(Inky.getState().equals("eaten")))
-            Inky.adjustState("scared", Blinky.getLocation());
+            if (!(Inky.getState().equals("eaten"))){
+              Inky.adjustState("scared", Blinky.getLocation());
+            } else{
+              Inky.adjustState("eaten", Blinky.getLocation());
+            }
+            
           }  
         } else{
           Inky.escapeBox();
@@ -121,13 +133,20 @@ public class Game{
           if (superTimer==0){
             Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
           } else{
-            if (!(Clyde.getState().equals("eaten")))
-            Clyde.adjustState("scared", Blinky.getLocation());
+            if (!(Clyde.getState().equals("eaten"))){
+              Clyde.adjustState("scared", Blinky.getLocation());
+            } else{
+              Clyde.adjustState("eaten", Blinky.getLocation());
+            }
+            
           }
         } else{
           Clyde.escapeBox();
         }
        
+       if (Clyde.outOfBox()&&Inky.outOfBox()){
+         currentMap.pinkBlock();
+       }
 
      
         Blinky.applyDirection(Blinky.chooseDirection());
