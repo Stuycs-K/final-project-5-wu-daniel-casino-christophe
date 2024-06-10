@@ -317,29 +317,29 @@ public class Game{
   
   public void showPacMan(){
     if(timer % 3 == 0){
-      if(player.PacManDirection.equals(new PVector(0,-5))){
+      if(player.PacManDirection.equals(new PVector(0,-4))){
         image(player.closedPacManImageUp, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(0,5))){
+      if(player.PacManDirection.equals(new PVector(0,4))){
         image(player.closedPacManImageDown, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(-5,0))){
+      if(player.PacManDirection.equals(new PVector(-4,0))){
         image(player.closedPacManImageLeft, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(5,0))){
+      if(player.PacManDirection.equals(new PVector(4,0))){
         image(player.closedPacManImageRight, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
     } else {
-      if(player.PacManDirection.equals(new PVector(0,-5))){
+      if(player.PacManDirection.equals(new PVector(0,-4))){
         image(player.openPacManImageUp, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(0,5))){
+      if(player.PacManDirection.equals(new PVector(0,4))){
         image(player.openPacManImageDown, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(-5,0))){
+      if(player.PacManDirection.equals(new PVector(-4,0))){
         image(player.openPacManImageLeft, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(5,0))){
+      if(player.PacManDirection.equals(new PVector(4,0))){
         image(player.openPacManImageRight, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
     }
