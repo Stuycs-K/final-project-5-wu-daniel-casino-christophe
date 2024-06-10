@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+
 public class Game{
   int timer;
   boolean startScreenActive;
@@ -61,6 +62,9 @@ public class Game{
   
   public void drawStartScreen(){
     background(0);
+    fill(229, 204, 201);
+    textSize(50);
+    text("Press ENTER to Start Game", 130, 435);
   }
   
   public void run(){
@@ -79,6 +83,7 @@ public class Game{
           }
         }
       }
+      
       if(timer < 150){
         fill(229, 204, 201);
         textSize(56);
@@ -208,29 +213,29 @@ public class Game{
   
   public void showPacMan(){
     if(timer % 3 == 0){
-      if(player.PacManDirection.equals(new PVector(0,-6))){
+      if(player.PacManDirection.equals(new PVector(0,-5))){
         image(player.closedPacManImageUp, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(0,6))){
+      if(player.PacManDirection.equals(new PVector(0,5))){
         image(player.closedPacManImageDown, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(-6,0))){
+      if(player.PacManDirection.equals(new PVector(-5,0))){
         image(player.closedPacManImageLeft, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(6,0))){
+      if(player.PacManDirection.equals(new PVector(5,0))){
         image(player.closedPacManImageRight, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
     } else {
-      if(player.PacManDirection.equals(new PVector(0,-6))){
+      if(player.PacManDirection.equals(new PVector(0,-5))){
         image(player.openPacManImageUp, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(0,6))){
+      if(player.PacManDirection.equals(new PVector(0,5))){
         image(player.openPacManImageDown, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(-6,0))){
+      if(player.PacManDirection.equals(new PVector(-5,0))){
         image(player.openPacManImageLeft, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(6,0))){
+      if(player.PacManDirection.equals(new PVector(5,0))){
         image(player.openPacManImageRight, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
     }
