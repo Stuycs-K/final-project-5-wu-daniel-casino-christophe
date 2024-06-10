@@ -38,7 +38,7 @@ public class Game{
     gameLost=false;
     superTimer = 0;
     timer = 0;
-    highScore = 0;
+    score = 0;
     scoreDiff = 0;
     currentState = 0;
     ghostsEaten = 0;
