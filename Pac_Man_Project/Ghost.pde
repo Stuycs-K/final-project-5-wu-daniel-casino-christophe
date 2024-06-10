@@ -12,6 +12,7 @@ public class Ghost{
   private PImage ghost;
   
   //States of Ghosts
+  private boolean alreadyAte;
   private boolean scaredState;
   private boolean scatteredState;
   private boolean chaseState;
@@ -45,6 +46,7 @@ public class Ghost{
         }
     }
     
+    alreadyAte = false;
     chaseState=false;
     scaredState=false;
     eatenState=false;
@@ -74,6 +76,17 @@ public class Ghost{
     currentUser=player;
   }
   
+  public void resetPellet(){
+    alreadyAte=false;
+  }
+  
+  public void preventEat(){
+    alreadyAte=true;
+  }
+  public boolean revenge(){
+    return alreadyAte;
+  }
+  
   public int[] getTarget(){
     return currentTarget;
   }
@@ -98,6 +111,14 @@ public class Ghost{
     }
   }
   
+  
+  public boolean returnHome(){
+    int[] returnedLoc = getLocation();
+    if (eatenState&&returnedLoc[0]==eatenTarget[0]&&returnedLoc[1]==eatenTarget[1]){
+      return true;
+    }
+    return false;
+  }
   public String getState(){
     if (scatteredState){
       return "scatter";
