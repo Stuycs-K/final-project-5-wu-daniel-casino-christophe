@@ -22,7 +22,7 @@
 
 ### 5/30/24
 - Watched a video on the states of the Ghosts
--Starting to incorporate scatterState
+- Starting to incorporate scatterState
 
 
 ### date 6/2/24
@@ -36,6 +36,13 @@
 - Made a changeState to swap states for ghosts in levels
 - Ghosts start in scatter state
 
+### 6/5/24
+- Set Ghost first target to be outside the box
+- Discussed plans with Christophe for GridSpace map
+
+### 6/9/24  
+- Fixed all ScatterState for Ghosts
+- 
 ### date y
 
 info
