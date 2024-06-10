@@ -34,10 +34,10 @@ public class Game{
     PacManMapImage = loadImage("PacManMapVeryFinal.jpg");
     player = new PacMan(currentMap.tileMap, 3);
     ghostStates = new String[]{"scatter", "chase"};
-    Blinky = new Ghost("Blinky.jpg", currentMap.tileMap, player, 377, 348);
-    Pinky = new Ghost("Pinky.jpg", currentMap.tileMap, player, 377, 435);
-    Inky = new Ghost("Inky.jpg", currentMap.tileMap, player, 362, 435);
-    Clyde = new Ghost("Clyde.jpg", currentMap.tileMap, player, 406, 435);
+    Blinky = new Ghost("Blinky.png", currentMap.tileMap, player, 377, 348);
+    Pinky = new Ghost("Pinky.png", currentMap.tileMap, player, 377, 435);
+    Inky = new Ghost("Inky.png", currentMap.tileMap, player, 362, 435);
+    Clyde = new Ghost("Clyde.png", currentMap.tileMap, player, 406, 435);
     player.applyDirection("left");
     player.updateLocation();
   }
