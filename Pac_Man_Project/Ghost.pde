@@ -77,6 +77,7 @@ public class Ghost{
   public int[] getTarget(){
     return currentTarget;
   }
+  
   public void showGhost(){
     image(ghost, location.x, location.y, size, size);
   }
@@ -129,6 +130,7 @@ public class Ghost{
       scaredState=true;
     }
     if (state.equals("scatter")){
+      ghost = loadImage(ghostName+".png");
       currentTarget = scatterTarget();
       scatteredState=true;
     }
@@ -139,6 +141,7 @@ public class Ghost{
     }
     
     if (state.equals("eaten")){
+      ghost=loadImage("Eyes.png");
       currentTarget=eatenTarget;
       eatenState=true;
     }

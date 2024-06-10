@@ -9,9 +9,11 @@ public class Game{
   private int gameOver;
   private int levelWin;
   private int levelDifficulty;
+  private int superTimer;
   private int currentState;
   private String[] ghostStates;
   private PImage PacManMapImage;
+  private int ghostsEaten;
   private Map currentMap;
   private KeyboardBuffer keyboardInput;
   private PacMan player;
@@ -25,8 +27,10 @@ public class Game{
   }
   
   public void initialize(){
+    superTimer = 0;
     timer = 0;
     currentState = 0;
+    ghostsEaten=0;
     startScreenActive = true;
     endScreenActive = false;
     currentMap = new Map();
@@ -86,20 +90,26 @@ public class Game{
         textSize(56);
         text("READY!", 320, 440);
       } else {
-        
-        if (scoreDiff!=50){
+        if (scoreDiff==50){
+          superTimer=300;
+        }
+        if (superTimer==0){
           Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
           Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
         } else{
+          if (!(Blinky.getState().equals("eaten")))
           Blinky.adjustState("scared",Blinky.getLocation());
+          
+          if (!(Pinky.getState().equals("eaten")))
           Pinky.adjustState("scared", Blinky.getLocation());
         }
         
         
         if (Inky.outOfBox()){
-          if (scoreDiff!=50){
+          if (superTimer==0){
             Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
           }else{
+            if (!(Inky.getState().equals("eaten")))
             Inky.adjustState("scared", Blinky.getLocation());
           }  
         } else{
@@ -107,9 +117,10 @@ public class Game{
         }
         
         if (Clyde.outOfBox()){
-          if (scoreDiff!=50){
+          if (superTimer==0){
             Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
           } else{
+            if (!(Clyde.getState().equals("eaten")))
             Clyde.adjustState("scared", Blinky.getLocation());
           }
           
@@ -159,6 +170,10 @@ public class Game{
     } else {
       endScreenActive = true;
     }
+    if (superTimer>0){
+      superTimer--;
+    }
+    
   }
   
   public void switchStates(){
@@ -216,6 +231,16 @@ public class Game{
     ghostList.add(Clyde);
     for(Ghost g: ghostList){
       if((g.getLocation()[0] == player.getCurrentTile()[0]) && (g.getLocation()[1] == player.getCurrentTile()[1])){
+        
+        if (g.getState().equals("scared")){
+          g.adjustState("eaten", Blinky.getLocation());
+          player.pellet((int)(Math.pow(2,ghostsEaten)*100));
+          return false;
+        }
+        
+        if (g.getState().equals("eaten")){
+          return false;
+        }
         return true;
       }
     }

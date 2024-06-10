@@ -55,6 +55,9 @@ public class PacMan{
     } else if(pelletType == 3){
       score += 50;
     }
+    else{
+      score+=pelletType;
+    }
   }
   
   public void addLife(){
