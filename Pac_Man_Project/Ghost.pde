@@ -106,6 +106,7 @@ public class Ghost{
   public void adjustState(String state, int[] BlinkyLocation){
     removeCurrentState();
     if (state.equals("scared")){
+      currentTarget = scaredTarget();
       scaredState=true;
     }
     if (state.equals("scatter")){
@@ -265,6 +266,12 @@ public class Ghost{
     
     
   }
+  
+  public int[] scaredTarget(){
+    int[] scared = new int[]{(int)(Math.random()*27), (int)(Math.random()*31)};
+    return scared;
+  }
+  
   
   public int[] chaseTarget(PacMan player, int[] blinkyCoords){
     if (ghostName.equals("Pinky")){
