@@ -9,7 +9,6 @@ public class Game{
   private boolean allPelletsEaten;
   private int score;
   private int scoreDiff;
-  private int highScore;
   private boolean gameLost;
   private int superTimer;
   private int currentState;
