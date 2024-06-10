@@ -144,7 +144,7 @@ public class Game{
         text("Score", 30, 325);
         scoreDiff=player.getScore()-score;
         score=player.getScore();
-        text("" + player.getScore(), 53, 360);
+        text("" + player.getScore(), 49, 360);
         
         fill(226, 223, 210);
         textSize(40);
