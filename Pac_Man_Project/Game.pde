@@ -87,14 +87,20 @@ public class Game{
         text("READY!", 320, 440);
       } else {
         
-        Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
-        Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+        if (scoreDiff!=50){
+          Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+          Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+        } else{
+          Blinky.adjustState("scared",Blinky.getLocation());
+          Pinky.adjustState("scared", Blinky.getLocation());
+        }
+        
         
         if (Inky.outOfBox()){
           if (scoreDiff!=50){
             Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
           }else{
-            Clyde.adjustState("scared", Blinky.getLocation());
+            Inky.adjustState("scared", Blinky.getLocation());
           }  
         } else{
           Inky.escapeBox();

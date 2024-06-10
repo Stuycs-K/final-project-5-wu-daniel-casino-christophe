@@ -12,7 +12,7 @@ void setup(){
 
 void draw(){
   game.gameDraw();
-  if (stateTimer%300==0&&stateTimer!=0){
+  if (stateTimer%900==0&&stateTimer!=0){
     game.switchStates();
   }
   stateTimer++;
