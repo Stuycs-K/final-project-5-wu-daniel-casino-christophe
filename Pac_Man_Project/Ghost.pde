@@ -24,7 +24,7 @@ public class Ghost{
   //targeting system for ghost
   private int[] currentTarget;
   private int[] randomTarget;
-
+  private int[] eatenTarget;
   //Pacman for reference;
   PacMan currentUser;
   
@@ -62,6 +62,8 @@ public class Ghost{
         currentTarget = new int[]{13,11};
       }
     }
+    
+    eatenTarget = new int[]{13,11};
     
     location = new PVector(xCoord,yCoord);
     xvelocity = new PVector(movementSpeed,0);
@@ -137,6 +139,7 @@ public class Ghost{
     }
     
     if (state.equals("eaten")){
+      currentTarget=eatenTarget;
       eatenState=true;
     }
   }
