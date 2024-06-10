@@ -36,7 +36,7 @@ public class Game{
     ghostStates = new String[]{"scatter", "chase"};
     Blinky = new Ghost("Blinky.jpg", currentMap.tileMap, player, 377, 348);
     Pinky = new Ghost("Pinky.jpg", currentMap.tileMap, player, 377, 435);
-    Inky = new Ghost("Inky.jpg", currentMap.tileMap, player, 348, 406);
+    Inky = new Ghost("Inky.jpg", currentMap.tileMap, player, 362, 435);
     Clyde = new Ghost("Clyde.jpg", currentMap.tileMap, player, 406, 435);
     player.applyDirection("left");
     player.updateLocation();
@@ -89,7 +89,7 @@ public class Game{
         Inky.escapeBox();
       }
       
-      println(Arrays.toString(Clyde.getLocation()));
+      println(Inky.chooseDirection());
       if (Clyde.outOfBox()){
         Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
       } else{
