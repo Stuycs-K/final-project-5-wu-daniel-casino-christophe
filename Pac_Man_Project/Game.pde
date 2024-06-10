@@ -110,13 +110,13 @@ public class Game{
       
       fill(226, 223, 210);
       textSize(40);
-      text("Score", 34, 325);
-      text("" + player.getScore(), 49, 360);
+      text("Score", 30, 325);
+      text("" + player.getScore(), 53, 360);
       
       fill(226, 223, 210);
       textSize(40);
-      text("Lives", 812 - 130, 325);
-      text("" + player.getLives(), 712, 360);
+      text("Lives", 689, 325);
+      text("" + player.getLives(), 719, 360);
       
       player.updateLocation();
       player.getCurrentTile();
@@ -232,11 +232,13 @@ public class Game{
   
   public void drawEndScreen(){
     image(PacManMapImage,0,0);
-    fill(226, 223, 210);
-    textSize(40);
-    text("Game", 200, 600);
-    fill(226, 223, 210);
-    textSize(40);
-    text("Over", 600, 600);
+    fill(158, 27, 50);
+    textSize(50);
+    text("Game", 13, 525);
+    textSize(54);
+    text("Over", 689, 525);
+    fill(229, 204, 201);
+    textSize(50);
+    text("Press ENTER to Restart Game", 100, 435);
   }
 }
