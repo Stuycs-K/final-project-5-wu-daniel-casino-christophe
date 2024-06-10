@@ -4,7 +4,8 @@ public class Game{
   int timer;
   boolean startScreenActive;
   boolean endScreenActive;
-  private int highScore;
+  private int score;
+  private int scoreDiff;
   private int gameOver;
   private int levelWin;
   private int levelDifficulty;
@@ -25,7 +26,6 @@ public class Game{
   
   public void initialize(){
     timer = 0;
-    highScore = 0;
     currentState = 0;
     startScreenActive = true;
     endScreenActive = false;
@@ -33,6 +33,8 @@ public class Game{
     keyboardInput = new KeyboardBuffer();
     PacManMapImage = loadImage("PacManMapVeryFinal.jpg");
     player = new PacMan(currentMap.tileMap, 3);
+    score = player.getScore();
+    scoreDiff=0;
     ghostStates = new String[]{"scatter", "chase"};
     Blinky = new Ghost("Blinky.png", currentMap.tileMap, player, 377, 348);
     Pinky = new Ghost("Pinky.png", currentMap.tileMap, player, 377, 435);
@@ -89,15 +91,28 @@ public class Game{
         Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
         
         if (Inky.outOfBox()){
-          Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
+          if (scoreDiff!=50){
+            Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
+          }else{
+            Clyde.adjustState("scared", Blinky.getLocation());
+          }  
         } else{
           Inky.escapeBox();
         }
         
         if (Clyde.outOfBox()){
-          Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
+          if (scoreDiff!=50){
+            Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
+          } else{
+            Clyde.adjustState("scared", Blinky.getLocation());
+          }
+          
         } else{
           Clyde.escapeBox();
+        }
+        
+        if (Inky.outOfBox()&&Clyde.outOfBox()){
+          currentMap.pinkBlock();
         }
        
 
@@ -115,7 +130,10 @@ public class Game{
         fill(226, 223, 210);
         textSize(40);
         text("Score", 30, 325);
+        scoreDiff=player.getScore()-score;
+        score=player.getScore();
         text("" + player.getScore(), 53, 360);
+        
         
         fill(226, 223, 210);
         textSize(40);
