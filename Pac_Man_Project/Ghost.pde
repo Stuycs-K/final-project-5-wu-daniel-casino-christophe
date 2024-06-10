@@ -138,9 +138,6 @@ public class Ghost{
     return ghostLocation;
   }
   
-  public void adjustSpeed(int newSpeed){
-    movementSpeed = newSpeed;
-  }
   
   public void adjustState(String state, int[] BlinkyLocation){
     removeCurrentState();
