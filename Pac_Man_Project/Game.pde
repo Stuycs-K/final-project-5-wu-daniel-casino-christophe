@@ -79,52 +79,59 @@ public class Game{
           }
         }
       }
-      
-      Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
-      Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
-      
-      if (Inky.outOfBox()){
-        Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
-      } else{
-        Inky.escapeBox();
-      }
-      
-      println(Inky.chooseDirection());
-      if (Clyde.outOfBox()){
-        Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
-      } else{
-        Clyde.escapeBox();
-      }
-      
+      if(timer < 150){
+        fill(229, 204, 201);
+        textSize(56);
+        text("READY!", 320, 440);
+      } else {
         
-   
-      Blinky.applyDirection(Blinky.chooseDirection());
-      Pinky.applyDirection(Pinky.chooseDirection());
-      Inky.applyDirection(Inky.chooseDirection());
-      Clyde.applyDirection(Clyde.chooseDirection());
-      
-      Blinky.showGhost();
-      Pinky.showGhost();
-      Inky.showGhost();
-      Clyde.showGhost();
-      
-      fill(226, 223, 210);
-      textSize(40);
-      text("Score", 30, 325);
-      text("" + player.getScore(), 53, 360);
-      
-      fill(226, 223, 210);
-      textSize(40);
-      text("Lives", 689, 325);
-      text("" + player.getLives(), 719, 360);
-      
-      player.updateLocation();
-      player.getCurrentTile();
-      showPacMan();
-      pelletCollision();
-      if(ghostCollision()){
-        player.subtractLife();
-        player.moveToStart();
+        Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+        Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+        
+        if (Inky.outOfBox()){
+          Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
+        } else{
+          Inky.escapeBox();
+        }
+        
+        println(Inky.chooseDirection());
+        if (Clyde.outOfBox()){
+          Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
+        } else{
+          Clyde.escapeBox();
+        }
+        
+          
+     
+        Blinky.applyDirection(Blinky.chooseDirection());
+        Pinky.applyDirection(Pinky.chooseDirection());
+        Inky.applyDirection(Inky.chooseDirection());
+        Clyde.applyDirection(Clyde.chooseDirection());
+        
+        Blinky.showGhost();
+        Pinky.showGhost();
+        Inky.showGhost();
+        Clyde.showGhost();
+        
+        fill(226, 223, 210);
+        textSize(40);
+        text("Score", 30, 325);
+        text("" + player.getScore(), 53, 360);
+        
+        fill(226, 223, 210);
+        textSize(40);
+        text("Lives", 689, 325);
+        text("" + player.getLives(), 719, 360);
+        
+        player.updateLocation();
+        player.getCurrentTile();
+        showPacMan();
+        pelletCollision();
+        if(ghostCollision()){
+          player.subtractLife();
+          player.moveToStart();
+          timer = 0;
+        }
       }
     } else {
       endScreenActive = true;
