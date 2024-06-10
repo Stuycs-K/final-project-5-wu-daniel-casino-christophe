@@ -94,14 +94,13 @@ public class Game{
           Inky.escapeBox();
         }
         
-        println(Inky.chooseDirection());
         if (Clyde.outOfBox()){
           Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
         } else{
           Clyde.escapeBox();
         }
-        
-          
+       
+
      
         Blinky.applyDirection(Blinky.chooseDirection());
         Pinky.applyDirection(Pinky.chooseDirection());
