@@ -2,6 +2,7 @@ import processing.sound.*;
 SoundFile intro;
 SoundFile death;
 SoundFile eatGhost;
+SoundFile eatPellet;
 Game game;
 int stateTimer;
 void setup(){
@@ -10,6 +11,7 @@ void setup(){
   eatGhost = new SoundFile(this, "pacman_eatghost.mp3");
   death = new SoundFile(this, "pacman_death.mp3");
   intro = new SoundFile(this, "pacman_beginning.mp3");
+  eatPellet = new SoundFile(this, "pacman_chomp.mp3");
   intro.play();
   stateTimer=0;
 }
@@ -17,6 +19,9 @@ void setup(){
 void draw(){
   if (game.ateSound()){
     eatGhost.play();
+  }
+  if (game.pelletSound()){
+    eatPellet.play();
   }
   if (game.winCondition()){
     game.reset(false);

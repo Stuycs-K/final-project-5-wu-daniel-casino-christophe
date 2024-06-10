@@ -24,11 +24,15 @@ public class Game{
   private Ghost Inky;
   private Ghost Clyde;
   private boolean ghostAte;
+  private boolean pelletAte;
+  
+  
   public Game(){
     initialize();
   }
   
   public void initialize(){
+    pelletAte=false;
     ghostAte=false;
     gameLost=false;
     superTimer = 0;
@@ -73,6 +77,10 @@ public class Game{
   public boolean ateSound(){
     return ghostAte;
   }
+  
+  public boolean pelletSound(){
+    return pelletAte;
+  }
   public boolean lost(){
     return gameLost;
   }
@@ -106,6 +114,7 @@ public class Game{
  
   public void run(){
     ghostAte=false;
+    pelletAte=false;
     if(player.getLives() != 0){
       timer++;
       image(PacManMapImage,0,0);
@@ -342,6 +351,7 @@ public class Game{
     if((tileType == 2) || (tileType == 3)){
       player.pellet(tileType);
       currentMap.tileMap[player.getCurrentTile()[1]][player.getCurrentTile()[0]] = 1;
+      pelletAte=true;
     }
   }
   
