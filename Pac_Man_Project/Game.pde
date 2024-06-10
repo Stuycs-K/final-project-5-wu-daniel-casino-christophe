@@ -90,7 +90,6 @@ public class Game{
         textSize(56);
         text("READY!", 320, 440);
       } else {
-
         if (scoreDiff==50){
           superTimer=300;
         }
