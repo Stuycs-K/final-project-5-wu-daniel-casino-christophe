@@ -101,3 +101,5 @@
 - Added rotation capabilty for Pac-Man
 - Added animation for Pac-Man opening and closing his mouth
 - Added sound bits to game
+- Added ready screen
+- Added reset functionality for when Pac-Man collects all the pellets
