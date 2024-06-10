@@ -23,6 +23,7 @@ public class Game{
   private Ghost Pinky;
   private Ghost Inky;
   private Ghost Clyde;
+  private boolean timerContinue;
   private boolean ghostAte;
   private boolean pelletAte;
   
@@ -32,6 +33,7 @@ public class Game{
   }
   
   public void initialize(){
+    timerContinue=false;
     pelletAte=false;
     ghostAte=false;
     gameLost=false;
@@ -57,16 +59,21 @@ public class Game{
     player.updateLocation();
   }
   
+  
   public void gameDraw(){
     if(startScreenActive){
       drawStartScreen();
     } else if (endScreenActive){
       drawEndScreen();
     } else {
+      timerContinue=true;
       run();
     }
   }
   
+  public boolean startTimer(){
+    return timerContinue;
+  }
   public void enterPressed(){
     startScreenActive = false;
     if(endScreenActive){

@@ -37,6 +37,8 @@ void draw(){
   if (stateTimer%900==0&&stateTimer!=0){
     game.switchStates();
   }
+  
+  if (game.startTimer())
   stateTimer++;
 }
 
