@@ -107,12 +107,12 @@ public class Game{
       fill(226, 223, 210);
       textSize(40);
       text("Score", 34, 325);
-      text("" + player.getScore(), 38, 358);
+      text("" + player.getScore(), 49, 360);
       
       fill(226, 223, 210);
       textSize(40);
-      text("Lives", 812 - 100, 325);
-      text("" + player.getLives(), 812 - 108, 358);
+      text("Lives", 812 - 130, 325);
+      text("" + player.getLives(), 712, 360);
       
       player.updateLocation();
       player.getCurrentTile();

@@ -62,4 +62,13 @@ public class Map{
   public int[][] getTileMap(){
     return tileMap;
   }
+  
+  public void pinkBlock(){
+    if(tileMap[12][13] == 4){
+      tileMap[12][13] = 0;
+    }
+    if(tileMap[12][14] == 4){
+      tileMap[12][14] = 0;
+    }
+  }
 }
