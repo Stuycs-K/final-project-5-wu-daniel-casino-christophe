@@ -152,6 +152,14 @@ public class Ghost{
       currentTarget=randomTarget;
       scaredState=true;
     }
+    
+    if (state.equals("scaredrecover")){
+      ghost = loadImage("ScaredRecover.png");
+      scaredTarget();
+      movementSpeed=1;
+      currentTarget=randomTarget;
+      scaredState=true;
+    }
     if (state.equals("scatter")){
       ghost = loadImage(ghostName+".png");
       currentTarget = scatterTarget();

@@ -133,7 +133,13 @@ public class Game{
           
         } else{
           if (!(Blinky.getState().equals("eaten"))&&!Clyde.revenge()){
-            Blinky.adjustState("scared",Blinky.getLocation());
+            if (superTimer<=100){
+              Blinky.adjustState("scaredrecover",Blinky.getLocation());
+            }
+            else{
+              Blinky.adjustState("scared",Blinky.getLocation());
+            }
+            
           } else{
             Blinky.adjustState("eaten", Blinky.getLocation());
           }
@@ -144,7 +150,12 @@ public class Game{
           Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
         } else{
           if (!(Pinky.getState().equals("eaten"))&&!Pinky.revenge()){
-            Pinky.adjustState("scared", Blinky.getLocation());
+            if (superTimer<=100){
+              Pinky.adjustState("scaredrecover",Blinky.getLocation());
+            }
+            else{
+              Pinky.adjustState("scared",Blinky.getLocation());
+            }
           }else{
             Pinky.adjustState("eaten", Blinky.getLocation());
           }
@@ -157,7 +168,12 @@ public class Game{
             Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
           }else{
             if (!(Inky.getState().equals("eaten"))&&!Inky.revenge()){
-              Inky.adjustState("scared", Blinky.getLocation());
+              if (superTimer<=100){
+              Inky.adjustState("scaredrecover",Blinky.getLocation());
+            }
+            else{
+              Inky.adjustState("scared",Blinky.getLocation());
+            }
             } else{
               Inky.adjustState("eaten", Blinky.getLocation());
             }
@@ -172,7 +188,12 @@ public class Game{
             Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
           } else{
             if (!(Clyde.getState().equals("eaten"))&&!Clyde.revenge()){
-              Clyde.adjustState("scared", Blinky.getLocation());
+              if (superTimer<=100){
+              Clyde.adjustState("scaredrecover",Blinky.getLocation());
+            }
+            else{
+              Clyde.adjustState("scared",Blinky.getLocation());
+            }
             } else{
               Clyde.adjustState("eaten", Blinky.getLocation());
             }
