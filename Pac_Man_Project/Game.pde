@@ -202,29 +202,29 @@ public class Game{
   
   public void showPacMan(){
     if(timer % 3 == 0){
-      if(player.PacManDirection.equals(new PVector(0,-7))){
+      if(player.PacManDirection.equals(new PVector(0,-6))){
         image(player.closedPacManImageUp, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(0,7))){
+      if(player.PacManDirection.equals(new PVector(0,6))){
         image(player.closedPacManImageDown, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(-7,0))){
+      if(player.PacManDirection.equals(new PVector(-6,0))){
         image(player.closedPacManImageLeft, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(7,0))){
+      if(player.PacManDirection.equals(new PVector(6,0))){
         image(player.closedPacManImageRight, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
     } else {
-      if(player.PacManDirection.equals(new PVector(0,-7))){
+      if(player.PacManDirection.equals(new PVector(0,-6))){
         image(player.openPacManImageUp, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(0,7))){
+      if(player.PacManDirection.equals(new PVector(0,6))){
         image(player.openPacManImageDown, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(-7,0))){
+      if(player.PacManDirection.equals(new PVector(-6,0))){
         image(player.openPacManImageLeft, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(7,0))){
+      if(player.PacManDirection.equals(new PVector(6,0))){
         image(player.openPacManImageRight, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
     }
@@ -232,5 +232,11 @@ public class Game{
   
   public void drawEndScreen(){
     image(PacManMapImage,0,0);
+    fill(226, 223, 210);
+    textSize(40);
+    text("Game", 200, 600);
+    fill(226, 223, 210);
+    textSize(40);
+    text("Over", 600, 600);
   }
 }

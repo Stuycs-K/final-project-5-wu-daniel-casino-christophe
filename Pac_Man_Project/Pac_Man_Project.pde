@@ -10,7 +10,7 @@ void setup(){
 }
 
 void draw(){
-  game.run();
+  game.gameDraw();
 }
 
 void keyPressed() {

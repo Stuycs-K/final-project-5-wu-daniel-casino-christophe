@@ -23,7 +23,7 @@ public class PacMan{
   
   public PacMan(int[][] map, int lives){
     keyboardInput = new KeyboardBuffer();
-    movementSpeed = 8;
+    movementSpeed = 6;
     lifeCount = lives;
     score = 0;
     size = 29;
@@ -82,22 +82,22 @@ public class PacMan{
   }
   
   public void updateLocation(){    
-    if(PacManDirection.equals(new PVector(0,-7))){
+    if(PacManDirection.equals(new PVector(0,-6))){
       if(PacManMap[getCurrentTile()[1] - 1][getCurrentTile()[0]] != 0){
         location.add(PacManDirection);
       }
-    } else if(PacManDirection.equals(new PVector(0,7))){
+    } else if(PacManDirection.equals(new PVector(0,6))){
       if(PacManMap[getCurrentTile()[1] + 1][getCurrentTile()[0]] != 0){
         location.add(PacManDirection);
       }
-    } else if(PacManDirection.equals(new PVector(-7,0))){
+    } else if(PacManDirection.equals(new PVector(-6,0))){
       if(PacManMap[getCurrentTile()[1]][getCurrentTile()[0] - 1] != 0){
         location.add(PacManDirection);
       }
       if(PacManMap[getCurrentTile()[1]][getCurrentTile()[0] - 1] == 5){
         location.set(807, 430);
       }
-    } else if(PacManDirection.equals(new PVector(7,0))){
+    } else if(PacManDirection.equals(new PVector(6,0))){
       if(PacManMap[getCurrentTile()[1]][getCurrentTile()[0] + 1] != 0){
         location.add(PacManDirection);
       }
@@ -110,19 +110,19 @@ public class PacMan{
   public void applyDirection(String direction){
     if (direction.equals("up")){
        if(PacManMap[getCurrentTile()[1] - 1][getCurrentTile()[0]] != 0){
-        PacManDirection = new PVector(0,-7);
+        PacManDirection = new PVector(0,-6);
       }
     } else if (direction.equals("down")){
        if(PacManMap[getCurrentTile()[1] + 1][getCurrentTile()[0]] != 0){
-        PacManDirection = new PVector(0,7);
+        PacManDirection = new PVector(0,6);
       }
     } else if (direction.equals("left")){
        if(PacManMap[getCurrentTile()[1]][getCurrentTile()[0] - 1] != 0){
-        PacManDirection = new PVector(-7, 0);
+        PacManDirection = new PVector(-6, 0);
       }
     } else if (direction.equals("right")){
        if(PacManMap[getCurrentTile()[1]][getCurrentTile()[0] + 1] != 0){
-        PacManDirection = new PVector(7,0);
+        PacManDirection = new PVector(6,0);
       }
     }
   }
