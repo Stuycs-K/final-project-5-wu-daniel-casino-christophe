@@ -11,6 +11,15 @@ void setup(){
 }
 
 void draw(){
+  if (game.winCondition()){
+    game.reset(false);
+    stateTimer=0;
+  }
+  
+  if (game.lost()){
+    game.reset(true);
+    stateTimer=0;
+  }
   game.gameDraw();
   if (stateTimer%900==0&&stateTimer!=0){
     game.switchStates();
