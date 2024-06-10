@@ -5,6 +5,8 @@ public class Game{
   int timer;
   boolean startScreenActive;
   boolean endScreenActive;
+  private int score;
+  private int scoreDiff;
   private int highScore;
   private int gameOver;
   private int levelWin;
@@ -38,6 +40,8 @@ public class Game{
     keyboardInput = new KeyboardBuffer();
     PacManMapImage = loadImage("PacManMapVeryFinal.jpg");
     player = new PacMan(currentMap.tileMap, 3);
+    score = player.getScore();
+    scoreDiff=0;
     ghostStates = new String[]{"scatter", "chase"};
     Blinky = new Ghost("Blinky.png", currentMap.tileMap, player, 377, 348);
     Pinky = new Ghost("Pinky.png", currentMap.tileMap, player, 377, 435);
@@ -86,7 +90,7 @@ public class Game{
         textSize(56);
         text("READY!", 320, 440);
       } else {
-<<<<<<< HEAD
+
         if (scoreDiff==50){
           superTimer=300;
         }
@@ -139,6 +143,8 @@ public class Game{
         fill(226, 223, 210);
         textSize(40);
         text("Score", 30, 325);
+        scoreDiff=player.getScore()-score;
+        score=player.getScore();
         text("" + player.getScore(), 53, 360);
         
         fill(226, 223, 210);
@@ -223,6 +229,7 @@ public class Game{
         
         if (g.getState().equals("scared")){
           g.adjustState("eaten", Blinky.getLocation());
+          ghostsEaten++;
           player.pellet((int)(Math.pow(2,ghostsEaten)*100));
           return false;
         }
