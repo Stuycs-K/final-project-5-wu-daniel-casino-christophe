@@ -1,22 +1,30 @@
-//import processing.sound.*;
-//SoundFile file;
+import processing.sound.*;
+SoundFile intro;
+SoundFile death;
+SoundFile eatGhost;
 Game game;
 int stateTimer;
 void setup(){
   size(812, 899);
   game = new Game();
-  //file = new SoundFile(this, "pacman_beginning.mp3");
-  //file.play();
+  eatGhost = new SoundFile(this, "pacman_eatghost.mp3");
+  death = new SoundFile(this, "pacman_death.mp3");
+  intro = new SoundFile(this, "pacman_beginning.mp3");
+  intro.play();
   stateTimer=0;
 }
 
 void draw(){
+  if (game.ateSound()){
+    eatGhost.play();
+  }
   if (game.winCondition()){
     game.reset(false);
     stateTimer=0;
   }
   
   if (game.lost()){
+    death.play();
     game.reset(true);
     stateTimer=0;
   }

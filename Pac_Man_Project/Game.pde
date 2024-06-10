@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import processing.sound.*;
 
 public class Game{
   int timer;
@@ -22,12 +23,13 @@ public class Game{
   private Ghost Pinky;
   private Ghost Inky;
   private Ghost Clyde;
-  
+  private boolean ghostAte;
   public Game(){
     initialize();
   }
   
   public void initialize(){
+    ghostAte=false;
     gameLost=false;
     superTimer = 0;
     timer = 0;
@@ -68,6 +70,9 @@ public class Game{
     }
   }
   
+  public boolean ateSound(){
+    return ghostAte;
+  }
   public boolean lost(){
     return gameLost;
   }
@@ -97,7 +102,10 @@ public class Game{
     timer=0;
     allPelletsEaten=false;
   }
+  
+ 
   public void run(){
+    ghostAte=false;
     if(player.getLives() != 0){
       timer++;
       image(PacManMapImage,0,0);
@@ -312,6 +320,7 @@ public class Game{
       if((g.getLocation()[0] == player.getCurrentTile()[0]) && (g.getLocation()[1] == player.getCurrentTile()[1])){
         
         if (g.getState().equals("scared")){
+          ghostAte=true;
           g.adjustState("eaten", Blinky.getLocation());
           g.preventEat();
           ghostsEaten++;
