@@ -98,6 +98,14 @@ public class Ghost{
     }
   }
   
+  
+  public boolean returnHome(){
+    int[] returnedLoc = getLocation();
+    if (eatenState&&returnedLoc[0]==eatenTarget[0]&&returnedLoc[1]==eatenTarget[1]){
+      return true;
+    }
+    return false;
+  }
   public String getState(){
     if (scatteredState){
       return "scatter";

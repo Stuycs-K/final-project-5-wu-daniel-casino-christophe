@@ -93,9 +93,9 @@ public class Game{
         if (scoreDiff==50){
           superTimer=300;
         }
-        if (superTimer==0){
+        if (superTimer==0||Blinky.returnHome()){
           Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
-          Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+          
         } else{
           if (!(Blinky.getState().equals("eaten"))){
             Blinky.adjustState("scared",Blinky.getLocation());
@@ -103,18 +103,22 @@ public class Game{
             Blinky.adjustState("eaten", Blinky.getLocation());
           }
             
+          }
           
+        if (superTimer==0||Pinky.returnHome()){
+          Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
+        } else{
           if (!(Pinky.getState().equals("eaten"))){
             Pinky.adjustState("scared", Blinky.getLocation());
           }else{
             Pinky.adjustState("eaten", Blinky.getLocation());
           }
-            
-          }
+        }
+        
         
         
         if (Inky.outOfBox()){
-          if (superTimer==0){
+          if (superTimer==0||Inky.returnHome()){
             Inky.adjustState(ghostStates[currentState], Blinky.getLocation());
           }else{
             if (!(Inky.getState().equals("eaten"))){
@@ -129,7 +133,7 @@ public class Game{
         }
         
         if (Clyde.outOfBox()){
-          if (superTimer==0){
+          if (superTimer==0||Clyde.returnHome()){
             Clyde.adjustState(ghostStates[currentState], Blinky.getLocation());
           } else{
             if (!(Clyde.getState().equals("eaten"))){
