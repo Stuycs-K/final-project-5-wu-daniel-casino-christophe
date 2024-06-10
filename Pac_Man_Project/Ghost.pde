@@ -50,7 +50,18 @@ public class Ghost{
     outBox=false;
     scatteredState=true;
     
-    currentTarget = new int[]{13,11};
+    if (ghostName.equals("Inky")){
+      currentTarget = new int[]{15,11};
+    }
+    else{
+      if (ghostName.equals("Clyde")){
+          currentTarget = new int[]{11,11};
+      }
+      else{
+        currentTarget = new int[]{13,11};
+      }
+    }
+    
     location = new PVector(xCoord,yCoord);
     xvelocity = new PVector(movementSpeed,0);
     yvelocity = new PVector(0,movementSpeed);
