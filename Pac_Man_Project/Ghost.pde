@@ -144,9 +144,11 @@ public class Ghost{
   
   public void adjustState(String state, int[] BlinkyLocation){
     removeCurrentState();
+    movementSpeed=2;
     if (state.equals("scared")){
       ghost = loadImage("Scared.png");
       scaredTarget();
+      movementSpeed=1;
       currentTarget=randomTarget;
       scaredState=true;
     }

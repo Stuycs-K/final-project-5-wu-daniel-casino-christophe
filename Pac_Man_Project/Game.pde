@@ -91,9 +91,9 @@ public class Game{
         text("READY!", 320, 440);
       } else {
         
-        println(Inky.returnHome());
         if (scoreDiff==50){
           superTimer=300;
+          ghostsEaten=0;
         }
         if (superTimer==0||Blinky.returnHome()){
           Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
@@ -197,6 +197,7 @@ public class Game{
       Pinky.resetPellet();
       Inky.resetPellet();
       Clyde.resetPellet();
+      ghostsEaten=0;
     }
     
   }
