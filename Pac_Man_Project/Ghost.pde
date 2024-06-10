@@ -145,10 +145,14 @@ public class Ghost{
   public void adjustState(String state, int[] BlinkyLocation){
     removeCurrentState();
     movementSpeed=2;
+    xvelocity = new PVector(movementSpeed,0);
+    yvelocity = new PVector(0,movementSpeed);
     if (state.equals("scared")){
       ghost = loadImage("Scared.png");
       scaredTarget();
       movementSpeed=1;
+      xvelocity = new PVector(movementSpeed,0);
+      yvelocity = new PVector(0,movementSpeed);
       currentTarget=randomTarget;
       scaredState=true;
     }
@@ -236,7 +240,7 @@ public class Ghost{
     for (int i=0;i<possibleDirections.size();i++){
       
       if (possibleDirections.get(i).equals("left")){
-        if (gridLocation[0]==1||ghostMap[gridLocation[1]][gridLocation[0]-1]==0){
+        if (gridLocation[0]==1||ghostMap[gridLocation[1]][gridLocation[0]-1]==0||ghostMap[gridLocation[1]][gridLocation[0]-1]==7){
           possibleDirections.remove(i);
           i--;
         }
@@ -244,20 +248,20 @@ public class Ghost{
       }
       else{
         if (possibleDirections.get(i).equals("right")){
-          if (gridLocation[0]==26||ghostMap[gridLocation[1]][gridLocation[0]+1]==0){
+          if (gridLocation[0]==26||ghostMap[gridLocation[1]][gridLocation[0]+1]==0||ghostMap[gridLocation[1]][gridLocation[0]+1]==7){
             possibleDirections.remove(i);
             i--;
           }
         }
         else{
             if (possibleDirections.get(i).equals("up")){
-          if (gridLocation[1]==1||ghostMap[gridLocation[1]-1][gridLocation[0]]==0){
+          if (gridLocation[1]==1||ghostMap[gridLocation[1]-1][gridLocation[0]]==0||ghostMap[gridLocation[1]-1][gridLocation[0]]==7){
             possibleDirections.remove(i);
             i--;
           }
         }else{
           if (possibleDirections.get(i).equals("down")){
-          if (gridLocation[1]==29||ghostMap[gridLocation[1]+1][gridLocation[0]]==0){
+          if (gridLocation[1]==29||ghostMap[gridLocation[1]+1][gridLocation[0]]==0||ghostMap[gridLocation[1]+1][gridLocation[0]]==7){
             possibleDirections.remove(i);
             i--;
           }
@@ -369,27 +373,27 @@ public class Ghost{
       String direction = player.getPacManDirection();
       
       if (direction.equals("left")){
-        target[0]-=2;
+        target[0]-=movementSpeed;
         if (target[0]<0){
           target[0]=0;
         }
       }
       
       if (direction.equals("right")){
-        target[0]+=2;
+        target[0]+=movementSpeed;
         if (target[0]>27){
           target[0]=27;
         }
       }
       
       if (direction.equals("up")){
-        target[1]-=2;
+        target[1]-=movementSpeed;
         if (target[1]<0){
           target[1]=0;
         }
       }
       
-      target[1]+=2;
+      target[1]+=movementSpeed;
       if(target[1]>27){
         target[1]=27;
       }
