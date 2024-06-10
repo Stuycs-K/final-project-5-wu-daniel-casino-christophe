@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+
 public class Game{
   int timer;
   boolean startScreenActive;
   boolean endScreenActive;
-  private int score;
-  private int scoreDiff;
+  private int highScore;
   private int gameOver;
   private int levelWin;
   private int levelDifficulty;
@@ -29,6 +29,7 @@ public class Game{
   public void initialize(){
     superTimer = 0;
     timer = 0;
+    highScore = 0;
     currentState = 0;
     ghostsEaten=0;
     startScreenActive = true;
@@ -37,8 +38,6 @@ public class Game{
     keyboardInput = new KeyboardBuffer();
     PacManMapImage = loadImage("PacManMapVeryFinal.jpg");
     player = new PacMan(currentMap.tileMap, 3);
-    score = player.getScore();
-    scoreDiff=0;
     ghostStates = new String[]{"scatter", "chase"};
     Blinky = new Ghost("Blinky.png", currentMap.tileMap, player, 377, 348);
     Pinky = new Ghost("Pinky.png", currentMap.tileMap, player, 377, 435);
@@ -65,10 +64,6 @@ public class Game{
     }
   }
   
-  public void drawStartScreen(){
-    background(0);
-  }
-  
   public void run(){
     if(player.getLives() != 0){
       timer++;
@@ -85,11 +80,13 @@ public class Game{
           }
         }
       }
+      
       if(timer < 150){
         fill(229, 204, 201);
         textSize(56);
         text("READY!", 320, 440);
       } else {
+<<<<<<< HEAD
         if (scoreDiff==50){
           superTimer=300;
         }
@@ -123,13 +120,8 @@ public class Game{
             if (!(Clyde.getState().equals("eaten")))
             Clyde.adjustState("scared", Blinky.getLocation());
           }
-          
         } else{
           Clyde.escapeBox();
-        }
-        
-        if (Inky.outOfBox()&&Clyde.outOfBox()){
-          currentMap.pinkBlock();
         }
        
 
@@ -147,10 +139,7 @@ public class Game{
         fill(226, 223, 210);
         textSize(40);
         text("Score", 30, 325);
-        scoreDiff=player.getScore()-score;
-        score=player.getScore();
         text("" + player.getScore(), 53, 360);
-        
         
         fill(226, 223, 210);
         textSize(40);
@@ -257,32 +246,42 @@ public class Game{
   
   public void showPacMan(){
     if(timer % 3 == 0){
-      if(player.PacManDirection.equals(new PVector(0,-6))){
+      if(player.PacManDirection.equals(new PVector(0,-5))){
         image(player.closedPacManImageUp, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(0,6))){
+      if(player.PacManDirection.equals(new PVector(0,5))){
         image(player.closedPacManImageDown, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(-6,0))){
+      if(player.PacManDirection.equals(new PVector(-5,0))){
         image(player.closedPacManImageLeft, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(6,0))){
+      if(player.PacManDirection.equals(new PVector(5,0))){
         image(player.closedPacManImageRight, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
     } else {
-      if(player.PacManDirection.equals(new PVector(0,-6))){
+      if(player.PacManDirection.equals(new PVector(0,-5))){
         image(player.openPacManImageUp, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(0,6))){
+      if(player.PacManDirection.equals(new PVector(0,5))){
         image(player.openPacManImageDown, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(-6,0))){
+      if(player.PacManDirection.equals(new PVector(-5,0))){
         image(player.openPacManImageLeft, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
-      if(player.PacManDirection.equals(new PVector(6,0))){
+      if(player.PacManDirection.equals(new PVector(5,0))){
         image(player.openPacManImageRight, player.location.x - 14, player.location.y - 14, player.size, player.size);
       }
     }
+  }
+  
+  public void drawStartScreen(){
+    background(1);
+    fill(279, 2, 2);
+    textSize(50);
+    text("Welcome to Pac-Man", 170, 300);
+    fill(229, 204, 201);
+    textSize(50);
+    text("Press ENTER to Start Game", 130, 600);
   }
   
   public void drawEndScreen(){
