@@ -91,3 +91,14 @@ info
 ### 6/6/24
 - Added collisions between Pac-Man and walls, however it is not fully done
 - Fixed PVector movement of Pac-Man fully and made his movement constant
+
+### 6/8/24
+- Added collisions between Pac-Man and ghosts
+- Added pellets to map and score to keep track
+
+### 6/9/24
+- Added start screen and end screen
+- Added life counter to game
+- Added rotation capabilty for Pac-Man
+- Added animation for Pac-Man opening and closing his mouth
+- Added sound bits to game
