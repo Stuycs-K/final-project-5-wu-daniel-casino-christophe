@@ -111,7 +111,14 @@ public class Ghost{
     }
   }
   
-  
+  public void reachOut(){
+    if (outBox==false){
+      int[] location= getLocation();
+      if (location[0]==13&&location[1]==1){
+        outBox=true;
+      }
+    }
+  }
   public boolean returnHome(){
     int[] returnedLoc = getLocation();
     if (eatenState&&returnedLoc[0]==eatenTarget[0]&&returnedLoc[1]==eatenTarget[1]){

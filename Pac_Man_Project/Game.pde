@@ -152,6 +152,7 @@ public class Game{
           ghostsEaten=0;
         }
         if (superTimer==0||Blinky.returnHome()){
+          Blinky.reachOut();
           Blinky.adjustState(ghostStates[currentState], Blinky.getLocation());
           
         } else{
@@ -170,6 +171,7 @@ public class Game{
           }
           
         if (superTimer==0||Pinky.returnHome()){
+          Pinky.reachOut();
           Pinky.adjustState(ghostStates[currentState], Blinky.getLocation());
         } else{
           if (!(Pinky.getState().equals("eaten"))&&!Pinky.revenge()){
@@ -226,7 +228,7 @@ public class Game{
           Clyde.escapeBox();
         }
        
-       if (Clyde.outOfBox()&&Inky.outOfBox()){
+       if (Clyde.outOfBox()&&Inky.outOfBox()&&Blinky.outOfBox()&&Pinky.outOfBox()){
          currentMap.pinkBlock();
        }
 
