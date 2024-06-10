@@ -41,8 +41,18 @@
 - Discussed plans with Christophe for GridSpace map
 
 ### 6/9/24  
+- Added target for ghosts to move out of the box first
+- Fixed timer for ghost states
+- Fixed chooseDirection process
 - Fixed all ScatterState for Ghosts
-- 
+- Added chase and eaten states
+- Added sounds for the game
+- Made super pellets work
+- Implemented switch states in program
+- Added animations for all ghost states and whatnot
+- Added reset for the game when Pac Man dies
+- Resets game when Pac Man wins
+- Made ghosts go back to spawn when eaten
 ### date y
 
 info
