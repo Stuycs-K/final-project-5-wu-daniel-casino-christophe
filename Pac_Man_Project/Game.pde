@@ -232,10 +232,9 @@ public class Game{
   
   public void drawEndScreen(){
     image(PacManMapImage,0,0);
-    fill(226, 223, 210);
+    fill(158, 27, 50);
     textSize(40);
     text("Game", 200, 600);
-    fill(226, 223, 210);
     textSize(40);
     text("Over", 600, 600);
   }
