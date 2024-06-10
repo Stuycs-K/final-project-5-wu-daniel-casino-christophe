@@ -53,17 +53,6 @@
 - Added reset for the game when Pac Man dies
 - Resets game when Pac Man wins
 - Made ghosts go back to spawn when eaten
-### date y
-
-info
-
-### date y
-
-info
-
-### date y
-
-info
 
 
 ## Christophe Casino
