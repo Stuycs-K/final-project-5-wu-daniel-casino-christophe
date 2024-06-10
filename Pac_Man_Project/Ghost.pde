@@ -31,7 +31,7 @@ public class Ghost{
   public Ghost(String ghostType, int[][] map, PacMan player, int xCoord, int yCoord){
     ghost = loadImage(ghostType);
     movementSpeed = 2;
-    size = 29;
+    size = 36;
     ghostName = ghostType.substring(0, ghostType.length()-4);
     if (ghostName.equals("Blinky")||ghostName.equals("Pinky")){
       ghostDirection = new PVector(0,-1);
@@ -189,7 +189,7 @@ public class Ghost{
       }
       else{
         if (possibleDirections.get(i).equals("right")){
-          if (gridLocation[0]+1>=27||ghostMap[gridLocation[1]][gridLocation[0]+1]==0){
+          if (gridLocation[0]==26||ghostMap[gridLocation[1]][gridLocation[0]+1]==0){
             possibleDirections.remove(i);
             i--;
           }
@@ -210,7 +210,8 @@ public class Ghost{
         }
         }
       }
-
+      
+      println(possibleDirections.size());
     }
      int lowestDistance = findDistanceFromTarget(possibleDirections.get(0),gridLocation);
      String chosen = possibleDirections.get(0);
@@ -249,12 +250,12 @@ public class Ghost{
     }
     
     if (ghostName.equals("Blinky")){
-      int[] target = new int[]{27,0};
+      int[] target = new int[]{28,0};
       return target;
     }
     
     if (ghostName.equals("Inky")){
-      int[] target = new int[]{27,30};
+      int[] target = new int[]{28,31};
       return target;
     }
     
